@@ -5,8 +5,12 @@
 #define Create_Nil()                    Create_Node(SPECIAL_TYPE, 0, NIL, NULL, NULL, NULL, NULL, NULL, -1)
 #define Create_Param()                  Create_Node(SPECIAL_TYPE, 0, PARAM, NULL, NULL, NULL, NULL, NULL, -1)
 #define Create_St()                     Create_Node(SPECIAL_TYPE, 0, ST, NULL, NULL, NULL, NULL, NULL, -1)
+#define Create_Void()                   Create_Node(SPECIAL_TYPE, 0, VOID, NULL, NULL, NULL, NULL, NULL, -1)
+#define Create_Type()                   Create_Node(SPECIAL_TYPE, 0, TYPE, NULL, NULL, NULL, NULL, NULL, -1)
 
 #define IS_SPEC_TYPE(node)              node->type == SPECIAL_TYPE
+#define IS_NAME(node)                   node->type == NAME_TYPE
+#define IS_NAME(node)                   node->type == VAR_TYPE
 #define IS_EQ(node)                     node->value.l_type == EQ
 #define IS_ADD(node)                    node->value.l_type == ADD
 #define IS_SUB(node)                    node->value.l_type == SUB
@@ -28,7 +32,9 @@
 #define IS_BEGIN_COND(node)             node->value.l_type == BEGIN_COND
 #define IS_END_COND(node)               node->value.l_type == END_COND
 #define IS_CMP(node)                    (node->value.l_type == EQ_EQ || node->value.l_type == LESS_EQ || node->value.l_type == MORE_EQ || node->value.l_type == LESS ||\
-                                        node->value.l_type == MORE || node->value.l_type == NOT_EQ || node->value.l_type == AND || node->value.l_type == OR)
+                                        node->value.l_type == MORE || node->value.l_type == NOT_EQ)
+
+#define IS_AND_OR(node)                 node->value.l_type == AND || node->value.l_type == OR
 
 #define NEEDED_NODE(node)               node->value.l_type == VAR || node->value.l_type == IF || node->value.l_type == WHILE || node->value.l_type == CALL_FUNCTION ||\
                                         node->value.l_type == RET || node->value.l_type == SCAN || node->value.l_type == OUT || node->value.l_type == SKIP

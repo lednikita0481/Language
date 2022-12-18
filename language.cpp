@@ -17,6 +17,7 @@ int main()
     File_Read(&text);
     Node** nodes = (Node**) calloc(text.symbols, sizeof(Node*));
     Tokenise(nodes, &text);
+    Standart_Dump();
 }
 
 //-------------------------------Help Functions-----------------------------------------------------------------------------------------------------------------
@@ -113,8 +114,7 @@ double Get_Num(const char* str, int* pointer)
         {
             double add = (double)(*str - '0');
             for (int j = 0; j < i; j++) add /= 10;
-            val = val + add; //((double)(**str - '0')/(10 * i));
-            //printf("%lf\n", val);
+            val = val + add; 
             str++;
             (*pointer)++;
             i++;
@@ -193,7 +193,7 @@ void Tokenise(Node** nodes, Text* text)
                 SSaC();
             }
 
-            else if (nodes[current_token-1]->value.l_type == FUNC)
+            else if (nodes[current_token-1]->value.l_type == FUNC_D || nodes[current_token-1]->value.l_type == FUNC_V)
             {
                 int name_len = Next_Word_Len(text, &pointer);
                 printf("len is %d\n", name_len);
@@ -236,6 +236,8 @@ void Tokenise(Node** nodes, Text* text)
                 else 
                 {
                     nodes[current_token] = Create_Node(SPECIAL_TYPE, 0, CALL_FUNCTION, NULL, name, NULL, NULL, NULL, current_line);
+                    current_token++;
+                    nodes[current_token] = Create_Var(name, current_line);
                 }
 
                 current_token++;
@@ -246,7 +248,7 @@ void Tokenise(Node** nodes, Text* text)
         SSaC();
     }
 
-    //nodes = (Node**)realloc(nodes, (current_token+1)*sizeof(Node*));
+    nodes = (Node**)realloc(nodes, (current_token+1)*sizeof(Node*));
 
     Token_Dump(nodes, current_token);
     printf("%d\n", current_token);
@@ -290,16 +292,21 @@ void Lexical_Tree_Connector(Node** nodes, int Tokens_Amount)
 
     while(cur_token < Tokens_Amount-1)
     {
+
+
+        //Хочу кринжа и делаю!
+
+
         printf("node num is %d\n", nodes[cur_token]->num);
         switch (nodes[cur_token]->type)
         {
             case SPECIAL_TYPE:
                 switch (nodes[cur_token]->value.l_type)
                 {
-                    case FUNC:
+                    case FUNC_D:
                     {
                         Node* func_node = nodes[cur_token];
-                        printf("I'm in function node, line is %d\n", func_node->code_line);
+                        printf("I'm in function node, node is %d\n", func_node->num);
                         cur_token++;
                         Get_Func_Name(nodes, &cur_token, func_node);
                         size_t hash = Calculate_Hash(func_node, sizeof(Node));
@@ -307,6 +314,23 @@ void Lexical_Tree_Connector(Node** nodes, int Tokens_Amount)
                         F_NUM++;
                         cur_token++;
                         func_node->right = Get_Statement_Exp(nodes, &cur_token);
+                        func_node->left->right = Create_Type();
+                        cur_token++;
+                        break;
+                    }
+
+                    case FUNC_V:
+                    {
+                        Node* func_node = nodes[cur_token];
+                        printf("I'm in function node, node is %d\n", func_node->num);
+                        cur_token++;
+                        Get_Func_Name(nodes, &cur_token, func_node);
+                        size_t hash = Calculate_Hash(func_node, sizeof(Node));
+                        FUNCTIONS[F_NUM] = {func_node, func_node->left->call_func_name, hash};
+                        F_NUM++;
+                        cur_token++;
+                        func_node->right = Get_Statement_Exp(nodes, &cur_token);
+                        func_node->left->right = Create_Void();
                         cur_token++;
                         break;
                     }
@@ -319,7 +343,26 @@ void Lexical_Tree_Connector(Node** nodes, int Tokens_Amount)
             default:
                 break;
         }
+        //*/
     }
+
+    int i = 0;
+    Main_Node = Create_St();
+    Node* see_node = Main_Node;
+
+    for (i = 0; i < F_NUM-1; i++)
+    {
+        see_node->left = FUNCTIONS[i].node;
+        see_node->left->parent = see_node;
+        see_node->right = Create_St();
+        see_node->right->parent = see_node;
+        see_node = see_node->right;
+    }
+
+    see_node->left = FUNCTIONS[i].node;
+    see_node->left->parent = see_node;
+    see_node->right = Create_Nil();
+    see_node->right->parent = see_node;
 }
 
 //function creation processing __--__--__--__--__--__--__--__--__--__--
@@ -327,7 +370,7 @@ void Lexical_Tree_Connector(Node** nodes, int Tokens_Amount)
 void Get_Func_Name(Node** nodes, int* cur_token, Node* func_node)
 {
     Node* name_node = nodes[*cur_token];
-    printf("I'm in get func name node, line is %d\n", name_node->code_line);
+    printf("I'm in get func name node, num is %d\n", name_node->num);
 
     if (name_node->type != NAME_TYPE) Lexic_Error(name_node->code_line);
 
@@ -394,16 +437,19 @@ Node* Get_Statement_Exp(Node** nodes, int* cur_token)
     Node* begin_node = nodes[*cur_token];
     printf("I'm in get statement exp node, num is %d\n", begin_node->num);
 
-    if (begin_node->type != SPECIAL_TYPE || begin_node->value.l_type != START_EXP) Lexic_Error(begin_node->code_line);
-
+    if (begin_node->type != SPECIAL_TYPE || begin_node->value.l_type != START_EXP) 
+    {
+        Lexic_Error(begin_node->code_line);
+    }
     (*cur_token)++;
+
     Node* return_node = Get_Statement(nodes, cur_token);
 
     begin_node = nodes[*cur_token];
     if (begin_node->type != SPECIAL_TYPE || begin_node->value.l_type != END_EXP) Lexic_Error(begin_node->code_line);
+    printf("here!!!\n");
 
     return return_node;
-    ////////
 }
 
 Node* Get_Statement(Node** nodes, int* cur_token)
@@ -413,10 +459,16 @@ Node* Get_Statement(Node** nodes, int* cur_token)
     printf("I'm in get statement node\n");
 
     st_node->left = Get_Action(nodes, cur_token);
+    st_node->parent = st_node;
     Node* node = nodes[*cur_token];
     printf("I'm in get statement agian, num is %d\n", node->num);
     
-    if (node->type == SPECIAL_TYPE && node->value.l_type == END_EXP) st_node->right = Create_Nil();
+    if (node->type == SPECIAL_TYPE && node->value.l_type == END_EXP)
+    {
+        printf("alalalala\n");
+        st_node->right = Create_Nil();
+        st_node->right->parent = st_node;
+    }
     else 
     {
         st_node->right = Get_Statement(nodes, cur_token);
@@ -429,7 +481,7 @@ Node* Get_Statement(Node** nodes, int* cur_token)
 Node* Get_Action(Node** nodes, int* cur_token)
 {
     Node* see_node = nodes[*cur_token];
-    printf("I'm in get action node, line is %d\n", see_node->code_line);
+    printf("I'm in get action node, num is %d\n", see_node->num);
 
     if (IS_SPEC_TYPE(see_node) && NEEDED_NODE(see_node))
     {
@@ -534,15 +586,21 @@ Node* Get_Action(Node** nodes, int* cur_token)
         {
             printf("it's call function node\n");
             Node* call_node = see_node;
+            printf("call node num is %d\n", call_node->num);
             (*cur_token)++;
+            Node* func_name = nodes[*cur_token];
+            printf("func name node num is %d\n", func_name->num);
+            (*cur_token)++;
+            func_name->parent = call_node;
+            call_node->left = func_name;
+            
 
-            Get_Parametrs(nodes, cur_token, NULL, call_node);
-            call_node->left->parent = call_node;
+            Get_Parametrs(nodes, cur_token, NULL, func_name);
+            func_name->left->parent = func_name;
+            func_name->right = Create_Nil();
+            func_name->right->parent = func_name;
 
             (*cur_token)++;
-            //see_node = nodes[*cur_token];
-            //if (!(IS_SPEC_TYPE(see_node)) || !IS_END_AC(see_node)) Lexic_Error(see_node->code_line);
-            //(*cur_token)++;
 
             call_node->right = Create_Nil();
             call_node->right->parent = call_node;
@@ -562,7 +620,6 @@ Node* Get_Action(Node** nodes, int* cur_token)
             ret_node->right = Create_Nil();
             ret_node->right->parent = ret_node;
 
-            //(*cur_token)++;
             return ret_node;
             break;
         }
@@ -639,23 +696,14 @@ Node* GetE(Node** nodes, int* cur_token)
 {
     printf("I'm in getE\n");
     //printf("GetE!\n");
-    Node* left_node = GetT(nodes, cur_token);
+    Node* left_node = GetU(nodes, cur_token);
 
     while (IS_SPEC_TYPE(nodes[*cur_token]) && (IS_ADD(nodes[*cur_token]) || IS_SUB(nodes[*cur_token])))
     {
         Node* op_node = nodes[*cur_token];
         (*cur_token)++;
         
-        Node* right_node = GetT(nodes, cur_token);
-
-        /*if (op == '+')  //val += val2;
-        {
-            op_node = NodeCtor(OPERATOR, PLUS, 0, left_node, right_node);
-        }
-        else
-        {
-            op_node = NodeCtor(OPERATOR, MINUS, 0, left_node, right_node);
-        }*/
+        Node* right_node = GetU(nodes, cur_token);
 
         left_node->parent = op_node;
         op_node->left = left_node;
@@ -665,6 +713,28 @@ Node* GetE(Node** nodes, int* cur_token)
         left_node = op_node;
     }
     
+    return left_node;
+}
+
+Node* GetU(Node** nodes, int* cur_token)
+{
+    printf("I'm in getW\n");
+    Node* left_node = GetT(nodes, cur_token);
+
+    while (IS_SPEC_TYPE(nodes[*cur_token]) && IS_AND_OR(nodes[*cur_token]))
+    {
+        Node* op_node = nodes[*cur_token];
+        (*cur_token)++;
+
+        Node* right_node = GetT(nodes, cur_token);
+
+        left_node->parent = op_node;
+        op_node->left = left_node;
+        right_node->parent = op_node;
+        op_node->right = right_node;
+
+        left_node = op_node;
+    }
     return left_node;
 }
 
@@ -680,15 +750,6 @@ Node* GetT(Node** nodes, int* cur_token)
         (*cur_token)++;
 
         Node* right_node = GetW(nodes, cur_token);
-
-        /*if (op == '*')  //val += val2;
-        {
-            op_node = NodeCtor(OPERATOR, MUL, 0, left_node, right_node);
-        }
-        else
-        {
-            op_node = NodeCtor(OPERATOR, DIV, 0, left_node, right_node);
-        }*/
 
         left_node->parent = op_node;
         op_node->left = left_node;
@@ -706,7 +767,7 @@ Node* GetW(Node** nodes, int* cur_token)
     printf("I'm in getW\n");
     Node* left_node = GetP(nodes, cur_token);
 
-    if (IS_SPEC_TYPE(nodes[*cur_token]) && IS_CMP(nodes[*cur_token]))
+    while (IS_SPEC_TYPE(nodes[*cur_token]) && IS_CMP(nodes[*cur_token]))
     {
         Node* op_node = nodes[*cur_token];
         (*cur_token)++;
@@ -726,7 +787,6 @@ Node* GetW(Node** nodes, int* cur_token)
 Node* GetP(Node** nodes, int* cur_token)
 {
     printf("I'm in getP\n");
-    //printf("GetP!\n");
     Node* new_node = NULL;
 
     if (IS_SPEC_TYPE(nodes[*cur_token]) && IS_BEGIN_COND(nodes[*cur_token]))
@@ -757,9 +817,6 @@ Node* GetP(Node** nodes, int* cur_token)
             new_node->left->parent = new_node;
 
             (*cur_token)++;
-            //Node* see_node = nodes[*cur_token];
-            //if (!(IS_SPEC_TYPE(see_node)) || !IS_END_AC(see_node)) Lexic_Error(see_node->code_line);
-            //(*cur_token)++;
 
             new_node->right = Create_Nil();
             new_node->right->parent = new_node;
@@ -771,13 +828,17 @@ Node* GetP(Node** nodes, int* cur_token)
             Node* new_node = nodes[*cur_token];
             (*cur_token)++;
 
-            Get_Parametrs(nodes, cur_token, NULL, new_node);
-            new_node->left->parent = new_node;
+            Node* func_name = nodes[*cur_token];
+            (*cur_token)++;
+            func_name->parent = new_node;
+            new_node->left = func_name;
+            func_name->right = Create_Nil();
+            func_name->right->parent = func_name;
+
+            Get_Parametrs(nodes, cur_token, NULL, func_name);
+            func_name->left->parent = func_name;
 
             (*cur_token)++;
-            //Node* see_node = nodes[*cur_token];
-            //if (!(IS_SPEC_TYPE(see_node)) || !IS_END_AC(see_node)) Lexic_Error(see_node->code_line);
-            //(*cur_token)++;
 
             new_node->right = Create_Nil();
             new_node->right->parent = new_node;
@@ -808,45 +869,6 @@ Node* GetP(Node** nodes, int* cur_token)
 Node* GetN(Node** nodes, int* cur_token)
 {
     printf("I'm in getP\n");
-    //printf("GetN!\n");
-    /*
-    double val = 0;
-    const char* str_old = *str;
-    while ('0' <= **str && **str <= '9')
-    {
-        val = val*10 + **str - '0';
-        (*str)++;
-    }
-    if (**str == '.')
-    {
-        (*str)++;
-        int i = 1;
-        while ('0' <= **str && **str <= '9')
-        {
-            double add = (double)(**str - '0');
-            for (int j = 0; j < i; j++) add /= 10;
-            val = val + add; //((double)(**str - '0')/(10 * i));
-            //printf("%lf\n", val);
-            (*str)++;
-            i++;
-        }
-    }
-    
-    //assert(*str != str_old);
-
-    Node* new_node = NULL;
-
-    if (*str == str_old)
-    {
-        if (**str == 'x')
-        {
-            new_node = NodeCtor(VARIABLE, VARIABLE);
-            (*str)++;
-        }
-        else Syntax_Error(str);
-    }
-    else new_node = NodeCtor(NUMBER, 0, val);
-    */
 
     Node* new_node = nodes[*cur_token];
     (*cur_token)++;
@@ -886,7 +908,7 @@ void Token_Dump(Node** nodes, int amount)
                 char* color = NULL;
 
                 if (nodes[i]->value.l_type == START_EXP || nodes[i]->value.l_type == END_EXP || nodes[i]->value.l_type == END_AC) color = "yellow";
-                else if (nodes[i]->value.l_type == FUNC) color = "blue";
+                else if (nodes[i]->value.l_type == FUNC_D || nodes[i]->value.l_type == FUNC_V) color = "blue";
                 else color = "red";
 
                 Dump("node_%d[label = \"type: LANG WORD | name: %s %s | num = %d\", style = \"rounded, filled\", fillcolor = \"%s\"];\n", i, Spec_Type_Name(nodes[i]->value.l_type), (nodes[i]->value.l_type == CALL_FUNCTION ? nodes[i]->call_func_name : " "), nodes[i]->num, color);
@@ -987,8 +1009,11 @@ const char* Spec_Type_Name(Language_Types type)
     case END_AC:
         return ";";
         break;
-    case FUNC:
-        return "function";
+    case FUNC_D:
+        return "type function";
+        break;
+    case FUNC_V:
+        return "void function";
         break;
     case CALL_FUNCTION:
         return "call";
@@ -1003,10 +1028,10 @@ const char* Spec_Type_Name(Language_Types type)
         return "print";
         break;
     case AND:
-        return "&&";
+        return "and";
         break;
     case OR:
-        return "||";
+        return "or";
         break;
     case NIL:
         return "NIL";
@@ -1017,8 +1042,134 @@ const char* Spec_Type_Name(Language_Types type)
     case PARAM:
         return "Param";
         break;
-    
+    case VOID:
+        return "Void";
+        break;
+    case TYPE:
+        return "Type";
+        break;
+    }
+}
 
+const char* Spec_Type_Name_Standart(Language_Types type)
+{
+    switch (type)
+    {
+    case ADD:
+        {
+        return "ADD";
+        break;
+        }
+    case SUB:
+        {
+        return "SUB";
+        break;
+        }
+    case MUL:
+        return "MUL";
+        break;
+    case DIV:
+        return "DIV";
+        break;
+    case POW:
+        return "POW";
+        break;
+    case SIN:
+        return "SIN";
+        break;
+    case COS:
+        return "COS";
+        break;
+    case SKIP:
+        return "VAR";
+        break;
+    case EQ_EQ:
+        return "IS_EE";
+        break;
+    case LESS_EQ:
+        return "IS_BE";
+        break;
+    case MORE_EQ:
+        return "IS_GE";
+        break;
+    case LESS:
+        return "IS_BT";
+        break;
+    case MORE:
+        return "IS_GT";
+        break;
+    case NOT_EQ:
+        return "IS_NE";
+        break;
+    case EQ:
+        return "=";
+        break;
+    case VAR:
+        return "VAR";
+        break;
+    case IF:
+        return "IF";
+        break;
+    case ELSE:
+        return "ELSE";
+        break;
+    case WHILE:
+        return "WHILE";
+        break;
+    case START_EXP:
+        return "start exp";
+        break;
+    case END_EXP:
+        return "end exp";
+        break;
+    case BEGIN_COND:
+        return "begin cond";
+        break;
+    case END_COND:
+        return "end cond";
+        break;
+    case END_AC:
+        return ";";
+        break;
+    case FUNC_D:
+        return "FUNC";
+        break;
+    case FUNC_V:
+        return "FUNC";
+        break;
+    case CALL_FUNCTION:
+        return "CALL";
+        break;
+    case RET:
+        return "RET";
+        break;
+    case SCAN:
+        return "IN";
+        break;
+    case OUT:
+        return "OUT";
+        break;
+    case AND:
+        return "AND";
+        break;
+    case OR:
+        return "OR";
+        break;
+    case NIL:
+        return "NIL";
+        break;
+    case ST:
+        return "ST";
+        break;
+    case PARAM:
+        return "PARAM";
+        break;
+    case VOID:
+        return "VOID";
+        break;
+    case TYPE:
+        return "TYPE";
+        break;
     }
 }
 
@@ -1032,10 +1183,7 @@ void Proga_Dump()
     Dump("rankdir=TB;\n");
     Dump("node [ shape=record, style = rounded, fontsize = 30];\n");
 
-    for (int i = 0; i < F_NUM; i++)
-    {
-        Recursive_Node_Dump(FUNCTIONS[i].node, Dump_File);
-    }
+    Recursive_Node_Dump(Main_Node, Dump_File);
 
     Dump("}");
     fclose(Dump_File);
@@ -1047,7 +1195,7 @@ void Proga_Dump()
 
 }
 
-void Recursive_Node_Dump(Node* node, FILE* Dump_File)
+void Recursive_Node_Dump(const Node* node, FILE* Dump_File)
 {
     switch (node->type)
     {
@@ -1068,7 +1216,10 @@ void Recursive_Node_Dump(Node* node, FILE* Dump_File)
 
             if (node->value.l_type == PARAM) color = "hotpink2";
             else if (node->value.l_type == ST) color = "yellow";
-            else if (node->value.l_type == FUNC) color = "red";
+            else if (node->value.l_type == FUNC_D || node->value.l_type == FUNC_V) color = "red";
+            else if (node->value.l_type == VOID) color = "moccasin";
+            else if (node->value.l_type == TYPE) color = "orange";
+            else if (node->value.l_type == NIL) color = "blue1";
             else color = "pink";
 
             Dump("node_%d[label = \"{type: LANG WORD | name: %s %s}\", style = \"rounded, filled\", fillcolor = \"%s\"];\n", node->num, Spec_Type_Name(node->value.l_type), (node->value.l_type == CALL_FUNCTION ? node->call_func_name : " "), color);
@@ -1086,4 +1237,31 @@ void Recursive_Node_Dump(Node* node, FILE* Dump_File)
         Recursive_Node_Dump(node->right, Dump_File);
         Dump("node_%d->node_%d [color = \"darkred\"]\n", node->num, node->right->num);
     }
+}
+
+
+void Standart_Dump()
+{
+    FILE* Dump_File = fopen("standart/code.txt", "w");
+    Standart_Recursion(Dump_File, 0, Main_Node);
+}
+
+void Standart_Recursion(FILE* Dump_File, int tabs, Node* node)
+{
+    printf("i'm gegegegegegegegegegg, num is %d\n", node->num);
+    Dump("\n");
+    for (int i = 0; i < tabs; i++) Dump("\t");
+
+    Dump("{ ");
+
+    if (IS_SPEC_TYPE(node)) {Dump("%s", Spec_Type_Name_Standart(node->value.l_type));}
+    else if (IS_NAME(node) || IS_VAR(node)) {Dump("\"%s\"", node->value.name);}
+    else {Dump("%lg", node->value.dval);}
+
+    Dump(" ");
+
+    if(node->left != NULL) Standart_Recursion(Dump_File, tabs+1, node->left);
+    if(node->right != NULL) Standart_Recursion(Dump_File, tabs+1, node->right);
+
+    Dump("}");
 }

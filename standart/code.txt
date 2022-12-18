@@ -1,0 +1,77 @@
+
+{ ST 
+	{ FUNC 
+		{ 4.63819e-310 
+			{ NIL }
+			{ VOID }}
+		{ ST 
+			{ VAR 
+				{ "пи" }
+				{ 3.14 }}
+			{ ST 
+				{ IF 
+					{ AND 
+						{ IS_GT 
+							{ "пи" }
+							{ 3 }}
+						{ IS_EE 
+							{ "ты" }
+							{ "долбаеб" }}}
+					{ ELSE 
+						{ ST 
+							{ VAR 
+								{ "пи" }
+								{ 2.7 }}
+							{ NIL }}
+						{ ST 
+							{ VAR 
+								{ "пи" }
+								{ 666 }}
+							{ NIL }}}}
+				{ ST 
+					{ WHILE 
+						{ IS_EE 
+							{ "я" }
+							{ "долбаеб" }}
+						{ ST 
+							{ OUT 
+								{ PARAM 
+									{ "с" }
+									{ NIL }}}
+							{ NIL }}}
+					{ ST 
+						{ OUT 
+							{ PARAM 
+								{ "пи" }
+								{ NIL }}}
+						{ ST 
+							{ RET 
+								{ ADD 
+									{ 3 }
+									{ CALL 
+										{ "пнх" 
+											{ PARAM 
+												{ 5 }
+												{ PARAM 
+													{ 7 }
+													{ PARAM 
+														{ "x" }
+														{ NIL }}}}
+											{ NIL }}
+										{ NIL }}}
+								{ NIL }}
+							{ NIL }}}}}}}
+	{ ST 
+		{ FUNC 
+			{ 4.63819e-310 
+				{ PARAM 
+					{ "x" }
+					{ NIL }}
+				{ TYPE }}
+			{ ST 
+				{ OUT 
+					{ PARAM 
+						{ "x" }
+						{ NIL }}}
+				{ NIL }}}
+		{ NIL }}}

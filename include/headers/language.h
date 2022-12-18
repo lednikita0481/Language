@@ -52,7 +52,10 @@ enum Language_Types
     END_AC,
     BEGIN_COND,//
     END_COND,//
-    FUNC,
+    FUNC_D,
+    FUNC_V,
+    VOID,
+    TYPE,
     CALL_FUNCTION,
     RET,
     SCAN, 
@@ -112,7 +115,9 @@ double Get_Num(const char* str, int* pointer);
 void Token_Dump(Node** nodes, int amount);
 const char* Spec_Type_Name(Language_Types type);
 void Proga_Dump();
-void Recursive_Node_Dump(Node* node, FILE* Dump_File);
+void Recursive_Node_Dump(const Node* node, FILE* Dump_File);
+void Standart_Dump();
+void Standart_Recursion(FILE* Dump_File, int tabs, Node* node);
 
 void Lexic_Error(int line);
 void Lexical_Tree_Connector(Node** nodes, int Tokens_Amount);
@@ -125,6 +130,7 @@ Node* Get_Action(Node** nodes, int* cur_token);
 Node* GetE(Node** nodes, int* cur_token);
 Node* GetT(Node** nodes, int* cur_token);
 Node* GetW(Node** nodes, int* cur_token);
+Node* GetU(Node** nodes, int* cur_token);
 Node* GetP(Node** nodes, int* cur_token);
 Node* GetN(Node** nodes, int* cur_token);
 
