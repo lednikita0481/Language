@@ -10,7 +10,7 @@
 
 #define IS_SPEC_TYPE(node)              node->type == SPECIAL_TYPE
 #define IS_NAME(node)                   node->type == NAME_TYPE
-#define IS_NAME(node)                   node->type == VAR_TYPE
+#define IS_VAR(node)                    node->type == VAR_TYPE
 #define IS_EQ(node)                     node->value.l_type == EQ
 #define IS_ADD(node)                    node->value.l_type == ADD
 #define IS_SUB(node)                    node->value.l_type == SUB
@@ -22,7 +22,7 @@
 #define IS_CALL(node)                   node->value.l_type == CALL_FUNCTION
 #define IS_ELSE(node)                   node->value.l_type == ELSE
 #define IS_END_AC(node)                 node->value.l_type == END_AC
-#define IS_VAR(node)                    node->value.l_type == VAR
+//#define IS_VAR(node)                    node->value.l_type == VAR
 #define IS_IF(node)                     node->value.l_type == IF
 #define IS_WHILE(node)                  node->value.l_type == WHILE
 #define IS_RET(node)                    node->value.l_type == RET

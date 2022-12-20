@@ -2,13 +2,13 @@ digraph {
 nodesep = 2;
 rankdir=TB;
 node [ shape=record, style = rounded, fontsize = 30];
-node_110[label = "{type: LANG WORD | name: Statement  }", style = "rounded, filled", fillcolor = "yellow"];
+node_113[label = "{type: LANG WORD | name: Statement  }", style = "rounded, filled", fillcolor = "yellow"];
 node_0[label = "{type: LANG WORD | name: void function  }", style = "rounded, filled", fillcolor = "red"];
 node_1[label = "{type: NAME F | name: main}", style = "filled", fillcolor = "cyan"];
 node_78[label = "{type: LANG WORD | name: NIL  }", style = "rounded, filled", fillcolor = "blue1"];
 node_1->node_78 [color = "darkgreen"]
-node_102[label = "{type: LANG WORD | name: Void  }", style = "rounded, filled", fillcolor = "moccasin"];
-node_1->node_102 [color = "darkred"]
+node_104[label = "{type: LANG WORD | name: Void  }", style = "rounded, filled", fillcolor = "moccasin"];
+node_1->node_104 [color = "darkred"]
 node_0->node_1 [color = "darkgreen"]
 node_79[label = "{type: LANG WORD | name: Statement  }", style = "rounded, filled", fillcolor = "yellow"];
 node_5[label = "{type: LANG WORD | name: var  }", style = "rounded, filled", fillcolor = "pink"];
@@ -72,85 +72,91 @@ node_87->node_44 [color = "darkgreen"]
 node_88[label = "{type: LANG WORD | name: NIL  }", style = "rounded, filled", fillcolor = "blue1"];
 node_87->node_88 [color = "darkred"]
 node_42->node_87 [color = "darkgreen"]
-node_86->node_42 [color = "darkgreen"]
 node_89[label = "{type: LANG WORD | name: NIL  }", style = "rounded, filled", fillcolor = "blue1"];
-node_86->node_89 [color = "darkred"]
+node_42->node_89 [color = "darkred"]
+node_86->node_42 [color = "darkgreen"]
+node_90[label = "{type: LANG WORD | name: NIL  }", style = "rounded, filled", fillcolor = "blue1"];
+node_86->node_90 [color = "darkred"]
 node_35->node_86 [color = "darkred"]
 node_85->node_35 [color = "darkgreen"]
-node_90[label = "{type: LANG WORD | name: Statement  }", style = "rounded, filled", fillcolor = "yellow"];
+node_91[label = "{type: LANG WORD | name: Statement  }", style = "rounded, filled", fillcolor = "yellow"];
 node_48[label = "{type: LANG WORD | name: print  }", style = "rounded, filled", fillcolor = "pink"];
-node_91[label = "{type: LANG WORD | name: Param  }", style = "rounded, filled", fillcolor = "hotpink2"];
+node_92[label = "{type: LANG WORD | name: Param  }", style = "rounded, filled", fillcolor = "hotpink2"];
 node_50[label = "{type: VARIABLE | name: пи}", style = "filled", fillcolor = "green"];
-node_91->node_50 [color = "darkgreen"]
-node_92[label = "{type: LANG WORD | name: NIL  }", style = "rounded, filled", fillcolor = "blue1"];
-node_91->node_92 [color = "darkred"]
-node_48->node_91 [color = "darkgreen"]
-node_90->node_48 [color = "darkgreen"]
-node_93[label = "{type: LANG WORD | name: Statement  }", style = "rounded, filled", fillcolor = "yellow"];
+node_92->node_50 [color = "darkgreen"]
+node_93[label = "{type: LANG WORD | name: NIL  }", style = "rounded, filled", fillcolor = "blue1"];
+node_92->node_93 [color = "darkred"]
+node_48->node_92 [color = "darkgreen"]
+node_94[label = "{type: LANG WORD | name: NIL  }", style = "rounded, filled", fillcolor = "blue1"];
+node_48->node_94 [color = "darkred"]
+node_91->node_48 [color = "darkgreen"]
+node_95[label = "{type: LANG WORD | name: Statement  }", style = "rounded, filled", fillcolor = "yellow"];
 node_53[label = "{type: LANG WORD | name: return  }", style = "rounded, filled", fillcolor = "pink"];
 node_56[label = "{type: LANG WORD | name: +  }", style = "rounded, filled", fillcolor = "pink"];
 node_55[label = "{type: VALUE | double: 3}", style = "filled", fillcolor = "grey"];
 node_56->node_55 [color = "darkgreen"]
 node_57[label = "{type: LANG WORD | name: call пнх}", style = "rounded, filled", fillcolor = "pink"];
 node_58[label = "{type: VARIABLE | name: пнх}", style = "filled", fillcolor = "green"];
-node_95[label = "{type: LANG WORD | name: Param  }", style = "rounded, filled", fillcolor = "hotpink2"];
-node_60[label = "{type: VALUE | double: 5}", style = "filled", fillcolor = "grey"];
-node_95->node_60 [color = "darkgreen"]
-node_96[label = "{type: LANG WORD | name: Param  }", style = "rounded, filled", fillcolor = "hotpink2"];
-node_61[label = "{type: VALUE | double: 7}", style = "filled", fillcolor = "grey"];
-node_96->node_61 [color = "darkgreen"]
 node_97[label = "{type: LANG WORD | name: Param  }", style = "rounded, filled", fillcolor = "hotpink2"];
+node_60[label = "{type: VALUE | double: 5}", style = "filled", fillcolor = "grey"];
+node_97->node_60 [color = "darkgreen"]
+node_98[label = "{type: LANG WORD | name: Param  }", style = "rounded, filled", fillcolor = "hotpink2"];
+node_61[label = "{type: VALUE | double: 7}", style = "filled", fillcolor = "grey"];
+node_98->node_61 [color = "darkgreen"]
+node_99[label = "{type: LANG WORD | name: Param  }", style = "rounded, filled", fillcolor = "hotpink2"];
 node_62[label = "{type: VARIABLE | name: x}", style = "filled", fillcolor = "green"];
-node_97->node_62 [color = "darkgreen"]
-node_98[label = "{type: LANG WORD | name: NIL  }", style = "rounded, filled", fillcolor = "blue1"];
+node_99->node_62 [color = "darkgreen"]
+node_100[label = "{type: LANG WORD | name: NIL  }", style = "rounded, filled", fillcolor = "blue1"];
+node_99->node_100 [color = "darkred"]
+node_98->node_99 [color = "darkred"]
 node_97->node_98 [color = "darkred"]
-node_96->node_97 [color = "darkred"]
-node_95->node_96 [color = "darkred"]
-node_58->node_95 [color = "darkgreen"]
-node_94[label = "{type: LANG WORD | name: NIL  }", style = "rounded, filled", fillcolor = "blue1"];
-node_58->node_94 [color = "darkred"]
+node_58->node_97 [color = "darkgreen"]
+node_96[label = "{type: LANG WORD | name: NIL  }", style = "rounded, filled", fillcolor = "blue1"];
+node_58->node_96 [color = "darkred"]
 node_57->node_58 [color = "darkgreen"]
-node_99[label = "{type: LANG WORD | name: NIL  }", style = "rounded, filled", fillcolor = "blue1"];
-node_57->node_99 [color = "darkred"]
+node_101[label = "{type: LANG WORD | name: NIL  }", style = "rounded, filled", fillcolor = "blue1"];
+node_57->node_101 [color = "darkred"]
 node_56->node_57 [color = "darkred"]
 node_53->node_56 [color = "darkgreen"]
-node_100[label = "{type: LANG WORD | name: NIL  }", style = "rounded, filled", fillcolor = "blue1"];
-node_53->node_100 [color = "darkred"]
-node_93->node_53 [color = "darkgreen"]
-node_101[label = "{type: LANG WORD | name: NIL  }", style = "rounded, filled", fillcolor = "blue1"];
-node_93->node_101 [color = "darkred"]
-node_90->node_93 [color = "darkred"]
-node_85->node_90 [color = "darkred"]
+node_102[label = "{type: LANG WORD | name: NIL  }", style = "rounded, filled", fillcolor = "blue1"];
+node_53->node_102 [color = "darkred"]
+node_95->node_53 [color = "darkgreen"]
+node_103[label = "{type: LANG WORD | name: NIL  }", style = "rounded, filled", fillcolor = "blue1"];
+node_95->node_103 [color = "darkred"]
+node_91->node_95 [color = "darkred"]
+node_85->node_91 [color = "darkred"]
 node_80->node_85 [color = "darkred"]
 node_79->node_80 [color = "darkred"]
 node_0->node_79 [color = "darkred"]
-node_110->node_0 [color = "darkgreen"]
-node_111[label = "{type: LANG WORD | name: Statement  }", style = "rounded, filled", fillcolor = "yellow"];
+node_113->node_0 [color = "darkgreen"]
+node_114[label = "{type: LANG WORD | name: Statement  }", style = "rounded, filled", fillcolor = "yellow"];
 node_66[label = "{type: LANG WORD | name: type function  }", style = "rounded, filled", fillcolor = "red"];
 node_67[label = "{type: NAME F | name: пнх}", style = "filled", fillcolor = "cyan"];
-node_103[label = "{type: LANG WORD | name: Param  }", style = "rounded, filled", fillcolor = "hotpink2"];
+node_105[label = "{type: LANG WORD | name: Param  }", style = "rounded, filled", fillcolor = "hotpink2"];
 node_69[label = "{type: VARIABLE | name: x}", style = "filled", fillcolor = "green"];
-node_103->node_69 [color = "darkgreen"]
-node_104[label = "{type: LANG WORD | name: NIL  }", style = "rounded, filled", fillcolor = "blue1"];
-node_103->node_104 [color = "darkred"]
-node_67->node_103 [color = "darkgreen"]
-node_109[label = "{type: LANG WORD | name: Type  }", style = "rounded, filled", fillcolor = "orange"];
-node_67->node_109 [color = "darkred"]
+node_105->node_69 [color = "darkgreen"]
+node_106[label = "{type: LANG WORD | name: NIL  }", style = "rounded, filled", fillcolor = "blue1"];
+node_105->node_106 [color = "darkred"]
+node_67->node_105 [color = "darkgreen"]
+node_112[label = "{type: LANG WORD | name: Type  }", style = "rounded, filled", fillcolor = "orange"];
+node_67->node_112 [color = "darkred"]
 node_66->node_67 [color = "darkgreen"]
-node_105[label = "{type: LANG WORD | name: Statement  }", style = "rounded, filled", fillcolor = "yellow"];
+node_107[label = "{type: LANG WORD | name: Statement  }", style = "rounded, filled", fillcolor = "yellow"];
 node_72[label = "{type: LANG WORD | name: print  }", style = "rounded, filled", fillcolor = "pink"];
-node_106[label = "{type: LANG WORD | name: Param  }", style = "rounded, filled", fillcolor = "hotpink2"];
+node_108[label = "{type: LANG WORD | name: Param  }", style = "rounded, filled", fillcolor = "hotpink2"];
 node_74[label = "{type: VARIABLE | name: x}", style = "filled", fillcolor = "green"];
-node_106->node_74 [color = "darkgreen"]
-node_107[label = "{type: LANG WORD | name: NIL  }", style = "rounded, filled", fillcolor = "blue1"];
-node_106->node_107 [color = "darkred"]
-node_72->node_106 [color = "darkgreen"]
-node_105->node_72 [color = "darkgreen"]
-node_108[label = "{type: LANG WORD | name: NIL  }", style = "rounded, filled", fillcolor = "blue1"];
-node_105->node_108 [color = "darkred"]
-node_66->node_105 [color = "darkred"]
-node_111->node_66 [color = "darkgreen"]
-node_112[label = "{type: LANG WORD | name: NIL  }", style = "rounded, filled", fillcolor = "blue1"];
-node_111->node_112 [color = "darkred"]
-node_110->node_111 [color = "darkred"]
+node_108->node_74 [color = "darkgreen"]
+node_109[label = "{type: LANG WORD | name: NIL  }", style = "rounded, filled", fillcolor = "blue1"];
+node_108->node_109 [color = "darkred"]
+node_72->node_108 [color = "darkgreen"]
+node_110[label = "{type: LANG WORD | name: NIL  }", style = "rounded, filled", fillcolor = "blue1"];
+node_72->node_110 [color = "darkred"]
+node_107->node_72 [color = "darkgreen"]
+node_111[label = "{type: LANG WORD | name: NIL  }", style = "rounded, filled", fillcolor = "blue1"];
+node_107->node_111 [color = "darkred"]
+node_66->node_107 [color = "darkred"]
+node_114->node_66 [color = "darkgreen"]
+node_115[label = "{type: LANG WORD | name: NIL  }", style = "rounded, filled", fillcolor = "blue1"];
+node_114->node_115 [color = "darkred"]
+node_113->node_114 [color = "darkred"]
 }

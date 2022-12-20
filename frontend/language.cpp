@@ -660,6 +660,8 @@ Node* Get_Action(Node** nodes, int* cur_token)
 
             see_node = nodes[*cur_token];
             if (!(IS_SPEC_TYPE(see_node)) || !IS_END_AC(see_node)) Lexic_Error(see_node->code_line);
+            scan_node->right = Create_Nil();
+            scan_node->right->parent = scan_node;
             (*cur_token)++;
 
             return scan_node;
@@ -679,6 +681,8 @@ Node* Get_Action(Node** nodes, int* cur_token)
 
             see_node = nodes[*cur_token];
             if (!(IS_SPEC_TYPE(see_node)) || !(IS_END_AC(see_node))) Lexic_Error(see_node->code_line);
+            scan_node->right = Create_Nil();
+            scan_node->right->parent = scan_node;
             (*cur_token)++;
 
             return scan_node;
@@ -1081,7 +1085,7 @@ const char* Spec_Type_Name_Standart(Language_Types type)
         return "COS";
         break;
     case SKIP:
-        return "VAR";
+        return "EQ";
         break;
     case EQ_EQ:
         return "IS_EE";
@@ -1242,7 +1246,7 @@ void Recursive_Node_Dump(const Node* node, FILE* Dump_File)
 
 void Standart_Dump()
 {
-    FILE* Dump_File = fopen("standart/code.txt", "w");
+    FILE* Dump_File = fopen("../middlend/code.txt", "w");
     Standart_Recursion(Dump_File, 0, Main_Node);
 }
 
@@ -1260,8 +1264,10 @@ void Standart_Recursion(FILE* Dump_File, int tabs, Node* node)
 
     Dump(" ");
 
+    bool has_child = false;
+
     if(node->left != NULL) Standart_Recursion(Dump_File, tabs+1, node->left);
     if(node->right != NULL) Standart_Recursion(Dump_File, tabs+1, node->right);
 
-    Dump("}");
+    Dump("} ");
 }
