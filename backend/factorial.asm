@@ -4,14 +4,14 @@ hlt
 
 main:
 
-push 1000
-push 1000
+push 10000
+push 10000
 div
 
 pop [0]
 
 push 0
-push 1000
+push 10000
 div
 
 pop [1]
@@ -19,24 +19,24 @@ in
 pop [1]
 push [1]
 
-push 2000
-push 1000
+push 20000
+push 10000
 div
 
 jb if_label_0
 jmp if_label_1
 if_label_0:
 
-push 1000
-push 1000
+push 10000
+push 10000
 div
 
 pop [0]
 jmp if_label_2
 if_label_1:
 
-push 1000
-push 1000
+push 10000
+push 10000
 div
 
 pop [2]
@@ -51,8 +51,8 @@ mul
 pop [0]
 push [2]
 
-push 1000
-push 1000
+push 10000
+push 10000
 div
 
 add
@@ -64,7 +64,7 @@ push [0]
 out
 
 push 0
-push 1000
+push 10000
 div
 
 pop [999]
