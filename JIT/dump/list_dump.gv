@@ -1,99 +1,99 @@
 digraph {
 rankdir=LR;
 node [ shape=record ];
-node_0[label = " comand: call | has mem_arg: 0 | has imm_arg: 1 | imm_arg: 6 | has reg_arg: 0 | reg_arg: 0", style = "filled", fillcolor = green]
-node_1[label = " comand: hlt | has mem_arg: 0 | has imm_arg: 0 | imm_arg: 0 | has reg_arg: 0 | reg_arg: 0", style = "filled", fillcolor = red]
+node_0[label = " comand: call | ip: 0 | has mem_arg: 0 | has imm_arg: 1 | imm_arg: 6 | has reg_arg: 0 | reg_arg: 0", style = "filled", fillcolor = green]
+node_1[label = " comand: hlt | ip: 5 | has mem_arg: 0 | has imm_arg: 0 | imm_arg: 0 | has reg_arg: 0 | reg_arg: 0", style = "filled", fillcolor = red]
 node_0 -> node_1;
-node_2[label = " comand: push | has mem_arg: 0 | has imm_arg: 1 | imm_arg: 1000 | has reg_arg: 0 | reg_arg: 0", style = "filled", fillcolor = green]
+node_2[label = " comand: push | ip: 6 | has mem_arg: 0 | has imm_arg: 1 | imm_arg: 1000 | has reg_arg: 0 | reg_arg: 0", style = "filled", fillcolor = green]
 node_1 -> node_2;
-node_3[label = " comand: push | has mem_arg: 0 | has imm_arg: 1 | imm_arg: 1000 | has reg_arg: 0 | reg_arg: 0", style = "filled", fillcolor = green]
+node_3[label = " comand: push | ip: 11 | has mem_arg: 0 | has imm_arg: 1 | imm_arg: 1000 | has reg_arg: 0 | reg_arg: 0", style = "filled", fillcolor = green]
 node_2 -> node_3;
-node_4[label = " comand: div | has mem_arg: 0 | has imm_arg: 0 | imm_arg: 0 | has reg_arg: 0 | reg_arg: 0", style = "filled", fillcolor = red]
+node_4[label = " comand: div | ip: 16 | has mem_arg: 0 | has imm_arg: 0 | imm_arg: 0 | has reg_arg: 0 | reg_arg: 0", style = "filled", fillcolor = red]
 node_3 -> node_4;
-node_5[label = " comand: pop | has mem_arg: 1 | has imm_arg: 1 | imm_arg: 0 | has reg_arg: 0 | reg_arg: 0", style = "filled", fillcolor = green]
+node_5[label = " comand: pop | ip: 17 | has mem_arg: 1 | has imm_arg: 1 | imm_arg: 0 | has reg_arg: 0 | reg_arg: 0", style = "filled", fillcolor = green]
 node_4 -> node_5;
-node_6[label = " comand: push | has mem_arg: 0 | has imm_arg: 1 | imm_arg: 0 | has reg_arg: 0 | reg_arg: 0", style = "filled", fillcolor = green]
+node_6[label = " comand: push | ip: 22 | has mem_arg: 0 | has imm_arg: 1 | imm_arg: 0 | has reg_arg: 0 | reg_arg: 0", style = "filled", fillcolor = green]
 node_5 -> node_6;
-node_7[label = " comand: push | has mem_arg: 0 | has imm_arg: 1 | imm_arg: 1000 | has reg_arg: 0 | reg_arg: 0", style = "filled", fillcolor = green]
+node_7[label = " comand: push | ip: 27 | has mem_arg: 0 | has imm_arg: 1 | imm_arg: 1000 | has reg_arg: 0 | reg_arg: 0", style = "filled", fillcolor = green]
 node_6 -> node_7;
-node_8[label = " comand: div | has mem_arg: 0 | has imm_arg: 0 | imm_arg: 0 | has reg_arg: 0 | reg_arg: 0", style = "filled", fillcolor = red]
+node_8[label = " comand: div | ip: 32 | has mem_arg: 0 | has imm_arg: 0 | imm_arg: 0 | has reg_arg: 0 | reg_arg: 0", style = "filled", fillcolor = red]
 node_7 -> node_8;
-node_9[label = " comand: pop | has mem_arg: 1 | has imm_arg: 1 | imm_arg: 1 | has reg_arg: 0 | reg_arg: 0", style = "filled", fillcolor = green]
+node_9[label = " comand: pop | ip: 33 | has mem_arg: 1 | has imm_arg: 1 | imm_arg: 1 | has reg_arg: 0 | reg_arg: 0", style = "filled", fillcolor = green]
 node_8 -> node_9;
-node_10[label = " comand: in | has mem_arg: 0 | has imm_arg: 0 | imm_arg: 0 | has reg_arg: 0 | reg_arg: 0", style = "filled", fillcolor = red]
+node_10[label = " comand: in | ip: 38 | has mem_arg: 0 | has imm_arg: 0 | imm_arg: 0 | has reg_arg: 0 | reg_arg: 0", style = "filled", fillcolor = red]
 node_9 -> node_10;
-node_11[label = " comand: pop | has mem_arg: 1 | has imm_arg: 1 | imm_arg: 1 | has reg_arg: 0 | reg_arg: 0", style = "filled", fillcolor = green]
+node_11[label = " comand: pop | ip: 39 | has mem_arg: 1 | has imm_arg: 1 | imm_arg: 1 | has reg_arg: 0 | reg_arg: 0", style = "filled", fillcolor = green]
 node_10 -> node_11;
-node_12[label = " comand: push | has mem_arg: 1 | has imm_arg: 1 | imm_arg: 1 | has reg_arg: 0 | reg_arg: 0", style = "filled", fillcolor = green]
+node_12[label = " comand: push | ip: 44 | has mem_arg: 1 | has imm_arg: 1 | imm_arg: 1 | has reg_arg: 0 | reg_arg: 0", style = "filled", fillcolor = green]
 node_11 -> node_12;
-node_13[label = " comand: push | has mem_arg: 0 | has imm_arg: 1 | imm_arg: 2000 | has reg_arg: 0 | reg_arg: 0", style = "filled", fillcolor = green]
+node_13[label = " comand: push | ip: 49 | has mem_arg: 0 | has imm_arg: 1 | imm_arg: 2000 | has reg_arg: 0 | reg_arg: 0", style = "filled", fillcolor = green]
 node_12 -> node_13;
-node_14[label = " comand: push | has mem_arg: 0 | has imm_arg: 1 | imm_arg: 1000 | has reg_arg: 0 | reg_arg: 0", style = "filled", fillcolor = green]
+node_14[label = " comand: push | ip: 54 | has mem_arg: 0 | has imm_arg: 1 | imm_arg: 1000 | has reg_arg: 0 | reg_arg: 0", style = "filled", fillcolor = green]
 node_13 -> node_14;
-node_15[label = " comand: div | has mem_arg: 0 | has imm_arg: 0 | imm_arg: 0 | has reg_arg: 0 | reg_arg: 0", style = "filled", fillcolor = red]
+node_15[label = " comand: div | ip: 59 | has mem_arg: 0 | has imm_arg: 0 | imm_arg: 0 | has reg_arg: 0 | reg_arg: 0", style = "filled", fillcolor = red]
 node_14 -> node_15;
-node_16[label = " comand: jb | has mem_arg: 0 | has imm_arg: 1 | imm_arg: 70 | has reg_arg: 0 | reg_arg: 0", style = "filled", fillcolor = green]
+node_16[label = " comand: jb | ip: 60 | has mem_arg: 0 | has imm_arg: 1 | imm_arg: 70 | has reg_arg: 0 | reg_arg: 0", style = "filled", fillcolor = green]
 node_15 -> node_16;
-node_17[label = " comand: jmp | has mem_arg: 0 | has imm_arg: 1 | imm_arg: 91 | has reg_arg: 0 | reg_arg: 0", style = "filled", fillcolor = green]
+node_17[label = " comand: jmp | ip: 65 | has mem_arg: 0 | has imm_arg: 1 | imm_arg: 91 | has reg_arg: 0 | reg_arg: 0", style = "filled", fillcolor = green]
 node_16 -> node_17;
-node_18[label = " comand: push | has mem_arg: 0 | has imm_arg: 1 | imm_arg: 1000 | has reg_arg: 0 | reg_arg: 0", style = "filled", fillcolor = green]
+node_18[label = " comand: push | ip: 70 | has mem_arg: 0 | has imm_arg: 1 | imm_arg: 1000 | has reg_arg: 0 | reg_arg: 0", style = "filled", fillcolor = green]
 node_17 -> node_18;
-node_19[label = " comand: push | has mem_arg: 0 | has imm_arg: 1 | imm_arg: 1000 | has reg_arg: 0 | reg_arg: 0", style = "filled", fillcolor = green]
+node_19[label = " comand: push | ip: 75 | has mem_arg: 0 | has imm_arg: 1 | imm_arg: 1000 | has reg_arg: 0 | reg_arg: 0", style = "filled", fillcolor = green]
 node_18 -> node_19;
-node_20[label = " comand: div | has mem_arg: 0 | has imm_arg: 0 | imm_arg: 0 | has reg_arg: 0 | reg_arg: 0", style = "filled", fillcolor = red]
+node_20[label = " comand: div | ip: 80 | has mem_arg: 0 | has imm_arg: 0 | imm_arg: 0 | has reg_arg: 0 | reg_arg: 0", style = "filled", fillcolor = red]
 node_19 -> node_20;
-node_21[label = " comand: pop | has mem_arg: 1 | has imm_arg: 1 | imm_arg: 0 | has reg_arg: 0 | reg_arg: 0", style = "filled", fillcolor = green]
+node_21[label = " comand: pop | ip: 81 | has mem_arg: 1 | has imm_arg: 1 | imm_arg: 0 | has reg_arg: 0 | reg_arg: 0", style = "filled", fillcolor = green]
 node_20 -> node_21;
-node_22[label = " comand: jmp | has mem_arg: 0 | has imm_arg: 1 | imm_arg: 165 | has reg_arg: 0 | reg_arg: 0", style = "filled", fillcolor = green]
+node_22[label = " comand: jmp | ip: 86 | has mem_arg: 0 | has imm_arg: 1 | imm_arg: 165 | has reg_arg: 0 | reg_arg: 0", style = "filled", fillcolor = green]
 node_21 -> node_22;
-node_23[label = " comand: push | has mem_arg: 0 | has imm_arg: 1 | imm_arg: 1000 | has reg_arg: 0 | reg_arg: 0", style = "filled", fillcolor = green]
+node_23[label = " comand: push | ip: 91 | has mem_arg: 0 | has imm_arg: 1 | imm_arg: 1000 | has reg_arg: 0 | reg_arg: 0", style = "filled", fillcolor = green]
 node_22 -> node_23;
-node_24[label = " comand: push | has mem_arg: 0 | has imm_arg: 1 | imm_arg: 1000 | has reg_arg: 0 | reg_arg: 0", style = "filled", fillcolor = green]
+node_24[label = " comand: push | ip: 96 | has mem_arg: 0 | has imm_arg: 1 | imm_arg: 1000 | has reg_arg: 0 | reg_arg: 0", style = "filled", fillcolor = green]
 node_23 -> node_24;
-node_25[label = " comand: div | has mem_arg: 0 | has imm_arg: 0 | imm_arg: 0 | has reg_arg: 0 | reg_arg: 0", style = "filled", fillcolor = red]
+node_25[label = " comand: div | ip: 101 | has mem_arg: 0 | has imm_arg: 0 | imm_arg: 0 | has reg_arg: 0 | reg_arg: 0", style = "filled", fillcolor = red]
 node_24 -> node_25;
-node_26[label = " comand: pop | has mem_arg: 1 | has imm_arg: 1 | imm_arg: 2 | has reg_arg: 0 | reg_arg: 0", style = "filled", fillcolor = green]
+node_26[label = " comand: pop | ip: 102 | has mem_arg: 1 | has imm_arg: 1 | imm_arg: 2 | has reg_arg: 0 | reg_arg: 0", style = "filled", fillcolor = green]
 node_25 -> node_26;
-node_27[label = " comand: push | has mem_arg: 1 | has imm_arg: 1 | imm_arg: 2 | has reg_arg: 0 | reg_arg: 0", style = "filled", fillcolor = green]
+node_27[label = " comand: push | ip: 107 | has mem_arg: 1 | has imm_arg: 1 | imm_arg: 2 | has reg_arg: 0 | reg_arg: 0", style = "filled", fillcolor = green]
 node_26 -> node_27;
-node_28[label = " comand: push | has mem_arg: 1 | has imm_arg: 1 | imm_arg: 1 | has reg_arg: 0 | reg_arg: 0", style = "filled", fillcolor = green]
+node_28[label = " comand: push | ip: 112 | has mem_arg: 1 | has imm_arg: 1 | imm_arg: 1 | has reg_arg: 0 | reg_arg: 0", style = "filled", fillcolor = green]
 node_27 -> node_28;
-node_29[label = " comand: ja | has mem_arg: 0 | has imm_arg: 1 | imm_arg: 165 | has reg_arg: 0 | reg_arg: 0", style = "filled", fillcolor = green]
+node_29[label = " comand: ja | ip: 117 | has mem_arg: 0 | has imm_arg: 1 | imm_arg: 165 | has reg_arg: 0 | reg_arg: 0", style = "filled", fillcolor = green]
 node_28 -> node_29;
-node_30[label = " comand: push | has mem_arg: 1 | has imm_arg: 1 | imm_arg: 0 | has reg_arg: 0 | reg_arg: 0", style = "filled", fillcolor = green]
+node_30[label = " comand: push | ip: 122 | has mem_arg: 1 | has imm_arg: 1 | imm_arg: 0 | has reg_arg: 0 | reg_arg: 0", style = "filled", fillcolor = green]
 node_29 -> node_30;
-node_31[label = " comand: push | has mem_arg: 1 | has imm_arg: 1 | imm_arg: 2 | has reg_arg: 0 | reg_arg: 0", style = "filled", fillcolor = green]
+node_31[label = " comand: push | ip: 127 | has mem_arg: 1 | has imm_arg: 1 | imm_arg: 2 | has reg_arg: 0 | reg_arg: 0", style = "filled", fillcolor = green]
 node_30 -> node_31;
-node_32[label = " comand: mul | has mem_arg: 0 | has imm_arg: 0 | imm_arg: 0 | has reg_arg: 0 | reg_arg: 0", style = "filled", fillcolor = red]
+node_32[label = " comand: mul | ip: 132 | has mem_arg: 0 | has imm_arg: 0 | imm_arg: 0 | has reg_arg: 0 | reg_arg: 0", style = "filled", fillcolor = red]
 node_31 -> node_32;
-node_33[label = " comand: pop | has mem_arg: 1 | has imm_arg: 1 | imm_arg: 0 | has reg_arg: 0 | reg_arg: 0", style = "filled", fillcolor = green]
+node_33[label = " comand: pop | ip: 133 | has mem_arg: 1 | has imm_arg: 1 | imm_arg: 0 | has reg_arg: 0 | reg_arg: 0", style = "filled", fillcolor = green]
 node_32 -> node_33;
-node_34[label = " comand: push | has mem_arg: 1 | has imm_arg: 1 | imm_arg: 2 | has reg_arg: 0 | reg_arg: 0", style = "filled", fillcolor = green]
+node_34[label = " comand: push | ip: 138 | has mem_arg: 1 | has imm_arg: 1 | imm_arg: 2 | has reg_arg: 0 | reg_arg: 0", style = "filled", fillcolor = green]
 node_33 -> node_34;
-node_35[label = " comand: push | has mem_arg: 0 | has imm_arg: 1 | imm_arg: 1000 | has reg_arg: 0 | reg_arg: 0", style = "filled", fillcolor = green]
+node_35[label = " comand: push | ip: 143 | has mem_arg: 0 | has imm_arg: 1 | imm_arg: 1000 | has reg_arg: 0 | reg_arg: 0", style = "filled", fillcolor = green]
 node_34 -> node_35;
-node_36[label = " comand: push | has mem_arg: 0 | has imm_arg: 1 | imm_arg: 1000 | has reg_arg: 0 | reg_arg: 0", style = "filled", fillcolor = green]
+node_36[label = " comand: push | ip: 148 | has mem_arg: 0 | has imm_arg: 1 | imm_arg: 1000 | has reg_arg: 0 | reg_arg: 0", style = "filled", fillcolor = green]
 node_35 -> node_36;
-node_37[label = " comand: div | has mem_arg: 0 | has imm_arg: 0 | imm_arg: 0 | has reg_arg: 0 | reg_arg: 0", style = "filled", fillcolor = red]
+node_37[label = " comand: div | ip: 153 | has mem_arg: 0 | has imm_arg: 0 | imm_arg: 0 | has reg_arg: 0 | reg_arg: 0", style = "filled", fillcolor = red]
 node_36 -> node_37;
-node_38[label = " comand: add | has mem_arg: 0 | has imm_arg: 0 | imm_arg: 0 | has reg_arg: 0 | reg_arg: 0", style = "filled", fillcolor = red]
+node_38[label = " comand: add | ip: 154 | has mem_arg: 0 | has imm_arg: 0 | imm_arg: 0 | has reg_arg: 0 | reg_arg: 0", style = "filled", fillcolor = red]
 node_37 -> node_38;
-node_39[label = " comand: pop | has mem_arg: 1 | has imm_arg: 1 | imm_arg: 2 | has reg_arg: 0 | reg_arg: 0", style = "filled", fillcolor = green]
+node_39[label = " comand: pop | ip: 155 | has mem_arg: 1 | has imm_arg: 1 | imm_arg: 2 | has reg_arg: 0 | reg_arg: 0", style = "filled", fillcolor = green]
 node_38 -> node_39;
-node_40[label = " comand: jmp | has mem_arg: 0 | has imm_arg: 1 | imm_arg: 107 | has reg_arg: 0 | reg_arg: 0", style = "filled", fillcolor = green]
+node_40[label = " comand: jmp | ip: 160 | has mem_arg: 0 | has imm_arg: 1 | imm_arg: 107 | has reg_arg: 0 | reg_arg: 0", style = "filled", fillcolor = green]
 node_39 -> node_40;
-node_41[label = " comand: push | has mem_arg: 1 | has imm_arg: 1 | imm_arg: 0 | has reg_arg: 0 | reg_arg: 0", style = "filled", fillcolor = green]
+node_41[label = " comand: push | ip: 165 | has mem_arg: 1 | has imm_arg: 1 | imm_arg: 0 | has reg_arg: 0 | reg_arg: 0", style = "filled", fillcolor = green]
 node_40 -> node_41;
-node_42[label = " comand: out | has mem_arg: 0 | has imm_arg: 0 | imm_arg: 0 | has reg_arg: 0 | reg_arg: 0", style = "filled", fillcolor = red]
+node_42[label = " comand: out | ip: 170 | has mem_arg: 0 | has imm_arg: 0 | imm_arg: 0 | has reg_arg: 0 | reg_arg: 0", style = "filled", fillcolor = red]
 node_41 -> node_42;
-node_43[label = " comand: push | has mem_arg: 0 | has imm_arg: 1 | imm_arg: 0 | has reg_arg: 0 | reg_arg: 0", style = "filled", fillcolor = green]
+node_43[label = " comand: push | ip: 171 | has mem_arg: 0 | has imm_arg: 1 | imm_arg: 0 | has reg_arg: 0 | reg_arg: 0", style = "filled", fillcolor = green]
 node_42 -> node_43;
-node_44[label = " comand: push | has mem_arg: 0 | has imm_arg: 1 | imm_arg: 1000 | has reg_arg: 0 | reg_arg: 0", style = "filled", fillcolor = green]
+node_44[label = " comand: push | ip: 176 | has mem_arg: 0 | has imm_arg: 1 | imm_arg: 1000 | has reg_arg: 0 | reg_arg: 0", style = "filled", fillcolor = green]
 node_43 -> node_44;
-node_45[label = " comand: div | has mem_arg: 0 | has imm_arg: 0 | imm_arg: 0 | has reg_arg: 0 | reg_arg: 0", style = "filled", fillcolor = red]
+node_45[label = " comand: div | ip: 181 | has mem_arg: 0 | has imm_arg: 0 | imm_arg: 0 | has reg_arg: 0 | reg_arg: 0", style = "filled", fillcolor = red]
 node_44 -> node_45;
-node_46[label = " comand: pop | has mem_arg: 1 | has imm_arg: 1 | imm_arg: 999 | has reg_arg: 0 | reg_arg: 0", style = "filled", fillcolor = green]
+node_46[label = " comand: pop | ip: 182 | has mem_arg: 1 | has imm_arg: 1 | imm_arg: 999 | has reg_arg: 0 | reg_arg: 0", style = "filled", fillcolor = green]
 node_45 -> node_46;
-node_47[label = " comand: ret | has mem_arg: 0 | has imm_arg: 0 | imm_arg: 0 | has reg_arg: 0 | reg_arg: 0", style = "filled", fillcolor = red]
+node_47[label = " comand: ret | ip: 187 | has mem_arg: 0 | has imm_arg: 0 | imm_arg: 0 | has reg_arg: 0 | reg_arg: 0", style = "filled", fillcolor = red]
 node_46 -> node_47;
 }

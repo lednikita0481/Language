@@ -27,8 +27,6 @@ void Get_Text(Text* text, int argc, char* argv[])
 
     text->buffer = (char*) calloc(text->size, sizeof(char));
 
-    printf("kuku ok\n");
-
     int size = fread(text->buffer, sizeof(char), text->size, file);
 
     if (size != text->size) Error_Occures(WRONG_SIZE);

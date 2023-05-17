@@ -1,0 +1,281 @@
+digraph {
+rankdir=LR;
+node [ shape=record ];
+node_0[label = " comand: x86_CALL | size: 1 | old_ip: 0 | new_ip: 0 | has imm_arg: 1 | imm_arg: 0 | ", style = " filled", fillcolor = red]
+node_1[label = " comand: x86_RET | size: 1 | old_ip: 5 | new_ip: 5 | has imm_arg: 0 | imm_arg: 0 | ", style = "rounded, filled", fillcolor = green]
+node_0 -> node_1;
+node_2[label = " comand: PUSH_REG | size: 1 | old_ip: 6 | new_ip: 6 | has imm_arg: 0 | imm_arg: 0 | ", style = " filled", fillcolor = green]
+node_1 -> node_2;
+node_3[label = " comand: PUSH_REG | size: 1 | old_ip: 11 | new_ip: 7 | has imm_arg: 0 | imm_arg: 0 | ", style = " filled", fillcolor = green]
+node_2 -> node_3;
+node_4[label = " comand: PUSH_REG | size: 1 | old_ip: 16 | new_ip: 8 | has imm_arg: 0 | imm_arg: 0 | ", style = "rounded, filled", fillcolor = green]
+node_3 -> node_4;
+node_5[label = " comand: PUSH_REG | size: 1 | old_ip: -1 | new_ip: 9 | has imm_arg: 0 | imm_arg: 0 | ", style = " filled", fillcolor = green]
+node_4 -> node_5;
+node_6[label = " comand: MOV_REG_IMM | size: 2 | old_ip: -1 | new_ip: 10 | has imm_arg: 1 | imm_arg: 1000 | ", style = " filled", fillcolor = red]
+node_5 -> node_6;
+node_7[label = " comand: IMUL_REG_REG | size: 4 | old_ip: -1 | new_ip: 16 | has imm_arg: 0 | imm_arg: 0 | ", style = " filled", fillcolor = green]
+node_6 -> node_7;
+node_8[label = " comand: CQO | size: 2 | old_ip: -1 | new_ip: 20 | has imm_arg: 0 | imm_arg: 0 | ", style = " filled", fillcolor = green]
+node_7 -> node_8;
+node_9[label = " comand: ADD_REG_REG | size: 3 | old_ip: -1 | new_ip: 22 | has imm_arg: 0 | imm_arg: 0 | ", style = " filled", fillcolor = green]
+node_8 -> node_9;
+node_10[label = " comand: MOV_REG_IMM | size: 2 | old_ip: -1 | new_ip: 25 | has imm_arg: 1 | imm_arg: 0 | ", style = " filled", fillcolor = red]
+node_9 -> node_10;
+node_11[label = " comand: MOV_REG_IMM | size: 2 | old_ip: -1 | new_ip: 31 | has imm_arg: 1 | imm_arg: 0 | ", style = " filled", fillcolor = red]
+node_10 -> node_11;
+node_12[label = " comand: PUSH_REG | size: 1 | old_ip: -1 | new_ip: 37 | has imm_arg: 0 | imm_arg: 0 | ", style = " filled", fillcolor = green]
+node_11 -> node_12;
+node_13[label = " comand: POP_R15_OFFSET | size: 3 | old_ip: 17 | new_ip: 38 | has imm_arg: 1 | imm_arg: 108 | ", style = "rounded, filled", fillcolor = red]
+node_12 -> node_13;
+node_14[label = " comand: PUSH_REG | size: 1 | old_ip: 22 | new_ip: 45 | has imm_arg: 0 | imm_arg: 0 | ", style = " filled", fillcolor = green]
+node_13 -> node_14;
+node_15[label = " comand: PUSH_REG | size: 1 | old_ip: 27 | new_ip: 46 | has imm_arg: 0 | imm_arg: 0 | ", style = " filled", fillcolor = green]
+node_14 -> node_15;
+node_16[label = " comand: PUSH_REG | size: 1 | old_ip: 32 | new_ip: 47 | has imm_arg: 0 | imm_arg: 0 | ", style = "rounded, filled", fillcolor = green]
+node_15 -> node_16;
+node_17[label = " comand: PUSH_REG | size: 1 | old_ip: -1 | new_ip: 48 | has imm_arg: 0 | imm_arg: 0 | ", style = " filled", fillcolor = green]
+node_16 -> node_17;
+node_18[label = " comand: MOV_REG_IMM | size: 2 | old_ip: -1 | new_ip: 49 | has imm_arg: 1 | imm_arg: 1000 | ", style = " filled", fillcolor = red]
+node_17 -> node_18;
+node_19[label = " comand: IMUL_REG_REG | size: 4 | old_ip: -1 | new_ip: 55 | has imm_arg: 0 | imm_arg: 0 | ", style = " filled", fillcolor = green]
+node_18 -> node_19;
+node_20[label = " comand: CQO | size: 2 | old_ip: -1 | new_ip: 59 | has imm_arg: 0 | imm_arg: 0 | ", style = " filled", fillcolor = green]
+node_19 -> node_20;
+node_21[label = " comand: ADD_REG_REG | size: 3 | old_ip: -1 | new_ip: 61 | has imm_arg: 0 | imm_arg: 0 | ", style = " filled", fillcolor = green]
+node_20 -> node_21;
+node_22[label = " comand: MOV_REG_IMM | size: 2 | old_ip: -1 | new_ip: 64 | has imm_arg: 1 | imm_arg: 0 | ", style = " filled", fillcolor = red]
+node_21 -> node_22;
+node_23[label = " comand: MOV_REG_IMM | size: 2 | old_ip: -1 | new_ip: 70 | has imm_arg: 1 | imm_arg: 0 | ", style = " filled", fillcolor = red]
+node_22 -> node_23;
+node_24[label = " comand: PUSH_REG | size: 1 | old_ip: -1 | new_ip: 76 | has imm_arg: 0 | imm_arg: 0 | ", style = " filled", fillcolor = green]
+node_23 -> node_24;
+node_25[label = " comand: POP_R15_OFFSET | size: 3 | old_ip: 33 | new_ip: 77 | has imm_arg: 1 | imm_arg: 116 | ", style = "rounded, filled", fillcolor = red]
+node_24 -> node_25;
+node_26[label = " comand: PUSH_REG | size: 1 | old_ip: 38 | new_ip: 84 | has imm_arg: 0 | imm_arg: 0 | ", style = " filled", fillcolor = green]
+node_25 -> node_26;
+node_27[label = " comand: LEA_RDI_RSP | size: 5 | old_ip: -1 | new_ip: 85 | has imm_arg: 0 | imm_arg: 0 | ", style = " filled", fillcolor = green]
+node_26 -> node_27;
+node_28[label = " comand: PUSH_ALL | size: 6 | old_ip: -1 | new_ip: 90 | has imm_arg: 0 | imm_arg: 0 | ", style = "rounded, filled", fillcolor = green]
+node_27 -> node_28;
+node_29[label = " comand: MOV_REG_REG | size: 3 | old_ip: -1 | new_ip: 96 | has imm_arg: 0 | imm_arg: 0 | ", style = "rounded, filled", fillcolor = green]
+node_28 -> node_29;
+node_30[label = " comand: ADD_REG_REG | size: 4 | old_ip: -1 | new_ip: 99 | has imm_arg: 0 | imm_arg: 0 | ", style = " filled", fillcolor = green]
+node_29 -> node_30;
+node_31[label = " comand: x86_CALL | size: 1 | old_ip: -1 | new_ip: 103 | has imm_arg: 0 | imm_arg: 0 | ", style = " filled", fillcolor = green]
+node_30 -> node_31;
+node_32[label = " comand: MOV_REG_REG | size: 3 | old_ip: -1 | new_ip: 104 | has imm_arg: 0 | imm_arg: 0 | ", style = " filled", fillcolor = green]
+node_31 -> node_32;
+node_33[label = " comand: PUSH_REG | size: 6 | old_ip: -1 | new_ip: 107 | has imm_arg: 0 | imm_arg: 0 | ", style = " filled", fillcolor = green]
+node_32 -> node_33;
+node_34[label = " comand: POP_R15_OFFSET | size: 3 | old_ip: 39 | new_ip: 113 | has imm_arg: 1 | imm_arg: 116 | ", style = "rounded, filled", fillcolor = red]
+node_33 -> node_34;
+node_35[label = " comand: POP_R15_OFFSET | size: 3 | old_ip: 44 | new_ip: 120 | has imm_arg: 1 | imm_arg: 116 | ", style = "rounded, filled", fillcolor = red]
+node_34 -> node_35;
+node_36[label = " comand: PUSH_REG | size: 1 | old_ip: 49 | new_ip: 127 | has imm_arg: 0 | imm_arg: 0 | ", style = " filled", fillcolor = green]
+node_35 -> node_36;
+node_37[label = " comand: PUSH_REG | size: 1 | old_ip: 54 | new_ip: 128 | has imm_arg: 0 | imm_arg: 0 | ", style = " filled", fillcolor = green]
+node_36 -> node_37;
+node_38[label = " comand: PUSH_REG | size: 1 | old_ip: 59 | new_ip: 129 | has imm_arg: 0 | imm_arg: 0 | ", style = "rounded, filled", fillcolor = green]
+node_37 -> node_38;
+node_39[label = " comand: PUSH_REG | size: 1 | old_ip: -1 | new_ip: 130 | has imm_arg: 0 | imm_arg: 0 | ", style = " filled", fillcolor = green]
+node_38 -> node_39;
+node_40[label = " comand: MOV_REG_IMM | size: 2 | old_ip: -1 | new_ip: 131 | has imm_arg: 1 | imm_arg: 1000 | ", style = " filled", fillcolor = red]
+node_39 -> node_40;
+node_41[label = " comand: IMUL_REG_REG | size: 4 | old_ip: -1 | new_ip: 137 | has imm_arg: 0 | imm_arg: 0 | ", style = " filled", fillcolor = green]
+node_40 -> node_41;
+node_42[label = " comand: CQO | size: 2 | old_ip: -1 | new_ip: 141 | has imm_arg: 0 | imm_arg: 0 | ", style = " filled", fillcolor = green]
+node_41 -> node_42;
+node_43[label = " comand: ADD_REG_REG | size: 3 | old_ip: -1 | new_ip: 143 | has imm_arg: 0 | imm_arg: 0 | ", style = " filled", fillcolor = green]
+node_42 -> node_43;
+node_44[label = " comand: MOV_REG_IMM | size: 2 | old_ip: -1 | new_ip: 146 | has imm_arg: 1 | imm_arg: 0 | ", style = " filled", fillcolor = red]
+node_43 -> node_44;
+node_45[label = " comand: MOV_REG_IMM | size: 2 | old_ip: -1 | new_ip: 152 | has imm_arg: 1 | imm_arg: 0 | ", style = " filled", fillcolor = red]
+node_44 -> node_45;
+node_46[label = " comand: PUSH_REG | size: 1 | old_ip: -1 | new_ip: 158 | has imm_arg: 0 | imm_arg: 0 | ", style = " filled", fillcolor = green]
+node_45 -> node_46;
+node_47[label = " comand: PUSH_REG | size: 1 | old_ip: 60 | new_ip: 159 | has imm_arg: 0 | imm_arg: 0 | ", style = "rounded, filled", fillcolor = green]
+node_46 -> node_47;
+node_48[label = " comand: PUSH_REG | size: 1 | old_ip: -1 | new_ip: 160 | has imm_arg: 0 | imm_arg: 0 | ", style = " filled", fillcolor = green]
+node_47 -> node_48;
+node_49[label = " comand: ADD_REG_REG | size: 3 | old_ip: -1 | new_ip: 161 | has imm_arg: 0 | imm_arg: 0 | ", style = " filled", fillcolor = green]
+node_48 -> node_49;
+node_50[label = " comand: PUSH_REG | size: 1 | old_ip: -1 | new_ip: 164 | has imm_arg: 0 | imm_arg: 0 | ", style = " filled", fillcolor = green]
+node_49 -> node_50;
+node_51[label = " comand: PUSH_REG | size: 1 | old_ip: -1 | new_ip: 165 | has imm_arg: 0 | imm_arg: 0 | ", style = "rounded, filled", fillcolor = green]
+node_50 -> node_51;
+node_52[label = " comand: x86_COND_JMP | size: 2 | old_ip: -1 | new_ip: 166 | has imm_arg: 1 | imm_arg: 60 | ", style = "rounded, filled", fillcolor = red]
+node_51 -> node_52;
+node_53[label = " comand: x86_JMP | size: 1 | old_ip: 65 | new_ip: 172 | has imm_arg: 1 | imm_arg: 65 | ", style = "rounded, filled", fillcolor = red]
+node_52 -> node_53;
+node_54[label = " comand: PUSH_REG | size: 1 | old_ip: 70 | new_ip: 177 | has imm_arg: 0 | imm_arg: 0 | ", style = " filled", fillcolor = green]
+node_53 -> node_54;
+node_55[label = " comand: PUSH_REG | size: 1 | old_ip: 75 | new_ip: 178 | has imm_arg: 0 | imm_arg: 0 | ", style = " filled", fillcolor = green]
+node_54 -> node_55;
+node_56[label = " comand: PUSH_REG | size: 1 | old_ip: 80 | new_ip: 179 | has imm_arg: 0 | imm_arg: 0 | ", style = "rounded, filled", fillcolor = green]
+node_55 -> node_56;
+node_57[label = " comand: PUSH_REG | size: 1 | old_ip: -1 | new_ip: 180 | has imm_arg: 0 | imm_arg: 0 | ", style = " filled", fillcolor = green]
+node_56 -> node_57;
+node_58[label = " comand: MOV_REG_IMM | size: 2 | old_ip: -1 | new_ip: 181 | has imm_arg: 1 | imm_arg: 1000 | ", style = " filled", fillcolor = red]
+node_57 -> node_58;
+node_59[label = " comand: IMUL_REG_REG | size: 4 | old_ip: -1 | new_ip: 187 | has imm_arg: 0 | imm_arg: 0 | ", style = " filled", fillcolor = green]
+node_58 -> node_59;
+node_60[label = " comand: CQO | size: 2 | old_ip: -1 | new_ip: 191 | has imm_arg: 0 | imm_arg: 0 | ", style = " filled", fillcolor = green]
+node_59 -> node_60;
+node_61[label = " comand: ADD_REG_REG | size: 3 | old_ip: -1 | new_ip: 193 | has imm_arg: 0 | imm_arg: 0 | ", style = " filled", fillcolor = green]
+node_60 -> node_61;
+node_62[label = " comand: MOV_REG_IMM | size: 2 | old_ip: -1 | new_ip: 196 | has imm_arg: 1 | imm_arg: 0 | ", style = " filled", fillcolor = red]
+node_61 -> node_62;
+node_63[label = " comand: MOV_REG_IMM | size: 2 | old_ip: -1 | new_ip: 202 | has imm_arg: 1 | imm_arg: 0 | ", style = " filled", fillcolor = red]
+node_62 -> node_63;
+node_64[label = " comand: PUSH_REG | size: 1 | old_ip: -1 | new_ip: 208 | has imm_arg: 0 | imm_arg: 0 | ", style = " filled", fillcolor = green]
+node_63 -> node_64;
+node_65[label = " comand: POP_R15_OFFSET | size: 3 | old_ip: 81 | new_ip: 209 | has imm_arg: 1 | imm_arg: 108 | ", style = "rounded, filled", fillcolor = red]
+node_64 -> node_65;
+node_66[label = " comand: x86_JMP | size: 1 | old_ip: 86 | new_ip: 216 | has imm_arg: 1 | imm_arg: 86 | ", style = "rounded, filled", fillcolor = red]
+node_65 -> node_66;
+node_67[label = " comand: PUSH_REG | size: 1 | old_ip: 91 | new_ip: 221 | has imm_arg: 0 | imm_arg: 0 | ", style = " filled", fillcolor = green]
+node_66 -> node_67;
+node_68[label = " comand: PUSH_REG | size: 1 | old_ip: 96 | new_ip: 222 | has imm_arg: 0 | imm_arg: 0 | ", style = " filled", fillcolor = green]
+node_67 -> node_68;
+node_69[label = " comand: PUSH_REG | size: 1 | old_ip: 101 | new_ip: 223 | has imm_arg: 0 | imm_arg: 0 | ", style = "rounded, filled", fillcolor = green]
+node_68 -> node_69;
+node_70[label = " comand: PUSH_REG | size: 1 | old_ip: -1 | new_ip: 224 | has imm_arg: 0 | imm_arg: 0 | ", style = " filled", fillcolor = green]
+node_69 -> node_70;
+node_71[label = " comand: MOV_REG_IMM | size: 2 | old_ip: -1 | new_ip: 225 | has imm_arg: 1 | imm_arg: 1000 | ", style = " filled", fillcolor = red]
+node_70 -> node_71;
+node_72[label = " comand: IMUL_REG_REG | size: 4 | old_ip: -1 | new_ip: 231 | has imm_arg: 0 | imm_arg: 0 | ", style = " filled", fillcolor = green]
+node_71 -> node_72;
+node_73[label = " comand: CQO | size: 2 | old_ip: -1 | new_ip: 235 | has imm_arg: 0 | imm_arg: 0 | ", style = " filled", fillcolor = green]
+node_72 -> node_73;
+node_74[label = " comand: ADD_REG_REG | size: 3 | old_ip: -1 | new_ip: 237 | has imm_arg: 0 | imm_arg: 0 | ", style = " filled", fillcolor = green]
+node_73 -> node_74;
+node_75[label = " comand: MOV_REG_IMM | size: 2 | old_ip: -1 | new_ip: 240 | has imm_arg: 1 | imm_arg: 0 | ", style = " filled", fillcolor = red]
+node_74 -> node_75;
+node_76[label = " comand: MOV_REG_IMM | size: 2 | old_ip: -1 | new_ip: 246 | has imm_arg: 1 | imm_arg: 0 | ", style = " filled", fillcolor = red]
+node_75 -> node_76;
+node_77[label = " comand: PUSH_REG | size: 1 | old_ip: -1 | new_ip: 252 | has imm_arg: 0 | imm_arg: 0 | ", style = " filled", fillcolor = green]
+node_76 -> node_77;
+node_78[label = " comand: POP_R15_OFFSET | size: 3 | old_ip: 102 | new_ip: 253 | has imm_arg: 1 | imm_arg: 124 | ", style = "rounded, filled", fillcolor = red]
+node_77 -> node_78;
+node_79[label = " comand: POP_R15_OFFSET | size: 3 | old_ip: 107 | new_ip: 260 | has imm_arg: 1 | imm_arg: 124 | ", style = "rounded, filled", fillcolor = red]
+node_78 -> node_79;
+node_80[label = " comand: POP_R15_OFFSET | size: 3 | old_ip: 112 | new_ip: 267 | has imm_arg: 1 | imm_arg: 116 | ", style = "rounded, filled", fillcolor = red]
+node_79 -> node_80;
+node_81[label = " comand: PUSH_REG | size: 1 | old_ip: 117 | new_ip: 274 | has imm_arg: 0 | imm_arg: 0 | ", style = "rounded, filled", fillcolor = green]
+node_80 -> node_81;
+node_82[label = " comand: PUSH_REG | size: 1 | old_ip: -1 | new_ip: 275 | has imm_arg: 0 | imm_arg: 0 | ", style = " filled", fillcolor = green]
+node_81 -> node_82;
+node_83[label = " comand: ADD_REG_REG | size: 3 | old_ip: -1 | new_ip: 276 | has imm_arg: 0 | imm_arg: 0 | ", style = " filled", fillcolor = green]
+node_82 -> node_83;
+node_84[label = " comand: PUSH_REG | size: 1 | old_ip: -1 | new_ip: 279 | has imm_arg: 0 | imm_arg: 0 | ", style = " filled", fillcolor = green]
+node_83 -> node_84;
+node_85[label = " comand: PUSH_REG | size: 1 | old_ip: -1 | new_ip: 280 | has imm_arg: 0 | imm_arg: 0 | ", style = "rounded, filled", fillcolor = green]
+node_84 -> node_85;
+node_86[label = " comand: x86_COND_JMP | size: 2 | old_ip: -1 | new_ip: 281 | has imm_arg: 1 | imm_arg: 117 | ", style = "rounded, filled", fillcolor = red]
+node_85 -> node_86;
+node_87[label = " comand: POP_R15_OFFSET | size: 3 | old_ip: 122 | new_ip: 287 | has imm_arg: 1 | imm_arg: 108 | ", style = "rounded, filled", fillcolor = red]
+node_86 -> node_87;
+node_88[label = " comand: POP_R15_OFFSET | size: 3 | old_ip: 127 | new_ip: 294 | has imm_arg: 1 | imm_arg: 124 | ", style = "rounded, filled", fillcolor = red]
+node_87 -> node_88;
+node_89[label = " comand: PUSH_REG | size: 1 | old_ip: 132 | new_ip: 301 | has imm_arg: 0 | imm_arg: 0 | ", style = "rounded, filled", fillcolor = green]
+node_88 -> node_89;
+node_90[label = " comand: PUSH_REG | size: 1 | old_ip: -1 | new_ip: 302 | has imm_arg: 0 | imm_arg: 0 | ", style = " filled", fillcolor = green]
+node_89 -> node_90;
+node_91[label = " comand: IMUL_REG_REG | size: 4 | old_ip: -1 | new_ip: 303 | has imm_arg: 0 | imm_arg: 0 | ", style = " filled", fillcolor = green]
+node_90 -> node_91;
+node_92[label = " comand: MOV_REG_IMM | size: 2 | old_ip: -1 | new_ip: 307 | has imm_arg: 1 | imm_arg: 1000 | ", style = " filled", fillcolor = red]
+node_91 -> node_92;
+node_93[label = " comand: CQO | size: 2 | old_ip: -1 | new_ip: 313 | has imm_arg: 0 | imm_arg: 0 | ", style = " filled", fillcolor = green]
+node_92 -> node_93;
+node_94[label = " comand: ADD_REG_REG | size: 3 | old_ip: -1 | new_ip: 315 | has imm_arg: 0 | imm_arg: 0 | ", style = " filled", fillcolor = green]
+node_93 -> node_94;
+node_95[label = " comand: MOV_REG_IMM | size: 2 | old_ip: -1 | new_ip: 318 | has imm_arg: 1 | imm_arg: 0 | ", style = " filled", fillcolor = red]
+node_94 -> node_95;
+node_96[label = " comand: MOV_REG_IMM | size: 2 | old_ip: -1 | new_ip: 324 | has imm_arg: 1 | imm_arg: 0 | ", style = " filled", fillcolor = red]
+node_95 -> node_96;
+node_97[label = " comand: PUSH_REG | size: 1 | old_ip: -1 | new_ip: 330 | has imm_arg: 0 | imm_arg: 0 | ", style = " filled", fillcolor = green]
+node_96 -> node_97;
+node_98[label = " comand: POP_R15_OFFSET | size: 3 | old_ip: 133 | new_ip: 331 | has imm_arg: 1 | imm_arg: 108 | ", style = "rounded, filled", fillcolor = red]
+node_97 -> node_98;
+node_99[label = " comand: POP_R15_OFFSET | size: 3 | old_ip: 138 | new_ip: 338 | has imm_arg: 1 | imm_arg: 124 | ", style = "rounded, filled", fillcolor = red]
+node_98 -> node_99;
+node_100[label = " comand: PUSH_REG | size: 1 | old_ip: 143 | new_ip: 345 | has imm_arg: 0 | imm_arg: 0 | ", style = " filled", fillcolor = green]
+node_99 -> node_100;
+node_101[label = " comand: PUSH_REG | size: 1 | old_ip: 148 | new_ip: 346 | has imm_arg: 0 | imm_arg: 0 | ", style = " filled", fillcolor = green]
+node_100 -> node_101;
+node_102[label = " comand: PUSH_REG | size: 1 | old_ip: 153 | new_ip: 347 | has imm_arg: 0 | imm_arg: 0 | ", style = "rounded, filled", fillcolor = green]
+node_101 -> node_102;
+node_103[label = " comand: PUSH_REG | size: 1 | old_ip: -1 | new_ip: 348 | has imm_arg: 0 | imm_arg: 0 | ", style = " filled", fillcolor = green]
+node_102 -> node_103;
+node_104[label = " comand: MOV_REG_IMM | size: 2 | old_ip: -1 | new_ip: 349 | has imm_arg: 1 | imm_arg: 1000 | ", style = " filled", fillcolor = red]
+node_103 -> node_104;
+node_105[label = " comand: IMUL_REG_REG | size: 4 | old_ip: -1 | new_ip: 355 | has imm_arg: 0 | imm_arg: 0 | ", style = " filled", fillcolor = green]
+node_104 -> node_105;
+node_106[label = " comand: CQO | size: 2 | old_ip: -1 | new_ip: 359 | has imm_arg: 0 | imm_arg: 0 | ", style = " filled", fillcolor = green]
+node_105 -> node_106;
+node_107[label = " comand: ADD_REG_REG | size: 3 | old_ip: -1 | new_ip: 361 | has imm_arg: 0 | imm_arg: 0 | ", style = " filled", fillcolor = green]
+node_106 -> node_107;
+node_108[label = " comand: MOV_REG_IMM | size: 2 | old_ip: -1 | new_ip: 364 | has imm_arg: 1 | imm_arg: 0 | ", style = " filled", fillcolor = red]
+node_107 -> node_108;
+node_109[label = " comand: MOV_REG_IMM | size: 2 | old_ip: -1 | new_ip: 370 | has imm_arg: 1 | imm_arg: 0 | ", style = " filled", fillcolor = red]
+node_108 -> node_109;
+node_110[label = " comand: PUSH_REG | size: 1 | old_ip: -1 | new_ip: 376 | has imm_arg: 0 | imm_arg: 0 | ", style = " filled", fillcolor = green]
+node_109 -> node_110;
+node_111[label = " comand: PUSH_REG | size: 1 | old_ip: 154 | new_ip: 377 | has imm_arg: 0 | imm_arg: 0 | ", style = "rounded, filled", fillcolor = green]
+node_110 -> node_111;
+node_112[label = " comand: PUSH_REG | size: 1 | old_ip: -1 | new_ip: 378 | has imm_arg: 0 | imm_arg: 0 | ", style = " filled", fillcolor = green]
+node_111 -> node_112;
+node_113[label = " comand: ADD_REG_REG | size: 3 | old_ip: -1 | new_ip: 379 | has imm_arg: 0 | imm_arg: 0 | ", style = " filled", fillcolor = green]
+node_112 -> node_113;
+node_114[label = " comand: PUSH_REG | size: 1 | old_ip: -1 | new_ip: 382 | has imm_arg: 0 | imm_arg: 0 | ", style = " filled", fillcolor = green]
+node_113 -> node_114;
+node_115[label = " comand: POP_R15_OFFSET | size: 3 | old_ip: 155 | new_ip: 383 | has imm_arg: 1 | imm_arg: 124 | ", style = "rounded, filled", fillcolor = red]
+node_114 -> node_115;
+node_116[label = " comand: x86_JMP | size: 1 | old_ip: 160 | new_ip: 390 | has imm_arg: 1 | imm_arg: 160 | ", style = "rounded, filled", fillcolor = red]
+node_115 -> node_116;
+node_117[label = " comand: POP_R15_OFFSET | size: 3 | old_ip: 165 | new_ip: 395 | has imm_arg: 1 | imm_arg: 108 | ", style = "rounded, filled", fillcolor = red]
+node_116 -> node_117;
+node_118[label = " comand: PUSH_REG | size: 6 | old_ip: 170 | new_ip: 402 | has imm_arg: 0 | imm_arg: 0 | ", style = " filled", fillcolor = green]
+node_117 -> node_118;
+node_119[label = " comand: PUSH_ALL | size: 6 | old_ip: -1 | new_ip: 408 | has imm_arg: 0 | imm_arg: 0 | ", style = "rounded, filled", fillcolor = green]
+node_118 -> node_119;
+node_120[label = " comand: MOV_REG_REG | size: 3 | old_ip: -1 | new_ip: 414 | has imm_arg: 0 | imm_arg: 0 | ", style = "rounded, filled", fillcolor = green]
+node_119 -> node_120;
+node_121[label = " comand: ADD_REG_REG | size: 4 | old_ip: -1 | new_ip: 417 | has imm_arg: 0 | imm_arg: 0 | ", style = " filled", fillcolor = green]
+node_120 -> node_121;
+node_122[label = " comand: x86_CALL | size: 1 | old_ip: -1 | new_ip: 421 | has imm_arg: 0 | imm_arg: 0 | ", style = " filled", fillcolor = green]
+node_121 -> node_122;
+node_123[label = " comand: MOV_REG_REG | size: 3 | old_ip: -1 | new_ip: 422 | has imm_arg: 0 | imm_arg: 0 | ", style = " filled", fillcolor = green]
+node_122 -> node_123;
+node_124[label = " comand: PUSH_REG | size: 6 | old_ip: -1 | new_ip: 425 | has imm_arg: 0 | imm_arg: 0 | ", style = " filled", fillcolor = green]
+node_123 -> node_124;
+node_125[label = " comand: PUSH_REG | size: 1 | old_ip: -1 | new_ip: 431 | has imm_arg: 0 | imm_arg: 0 | ", style = "rounded, filled", fillcolor = green]
+node_124 -> node_125;
+node_126[label = " comand: PUSH_REG | size: 1 | old_ip: 171 | new_ip: 432 | has imm_arg: 0 | imm_arg: 0 | ", style = " filled", fillcolor = green]
+node_125 -> node_126;
+node_127[label = " comand: PUSH_REG | size: 1 | old_ip: 176 | new_ip: 433 | has imm_arg: 0 | imm_arg: 0 | ", style = " filled", fillcolor = green]
+node_126 -> node_127;
+node_128[label = " comand: PUSH_REG | size: 1 | old_ip: 181 | new_ip: 434 | has imm_arg: 0 | imm_arg: 0 | ", style = "rounded, filled", fillcolor = green]
+node_127 -> node_128;
+node_129[label = " comand: PUSH_REG | size: 1 | old_ip: -1 | new_ip: 435 | has imm_arg: 0 | imm_arg: 0 | ", style = " filled", fillcolor = green]
+node_128 -> node_129;
+node_130[label = " comand: MOV_REG_IMM | size: 2 | old_ip: -1 | new_ip: 436 | has imm_arg: 1 | imm_arg: 1000 | ", style = " filled", fillcolor = red]
+node_129 -> node_130;
+node_131[label = " comand: IMUL_REG_REG | size: 4 | old_ip: -1 | new_ip: 442 | has imm_arg: 0 | imm_arg: 0 | ", style = " filled", fillcolor = green]
+node_130 -> node_131;
+node_132[label = " comand: CQO | size: 2 | old_ip: -1 | new_ip: 446 | has imm_arg: 0 | imm_arg: 0 | ", style = " filled", fillcolor = green]
+node_131 -> node_132;
+node_133[label = " comand: ADD_REG_REG | size: 3 | old_ip: -1 | new_ip: 448 | has imm_arg: 0 | imm_arg: 0 | ", style = " filled", fillcolor = green]
+node_132 -> node_133;
+node_134[label = " comand: MOV_REG_IMM | size: 2 | old_ip: -1 | new_ip: 451 | has imm_arg: 1 | imm_arg: 0 | ", style = " filled", fillcolor = red]
+node_133 -> node_134;
+node_135[label = " comand: MOV_REG_IMM | size: 2 | old_ip: -1 | new_ip: 457 | has imm_arg: 1 | imm_arg: 0 | ", style = " filled", fillcolor = red]
+node_134 -> node_135;
+node_136[label = " comand: PUSH_REG | size: 1 | old_ip: -1 | new_ip: 463 | has imm_arg: 0 | imm_arg: 0 | ", style = " filled", fillcolor = green]
+node_135 -> node_136;
+node_137[label = " comand: POP_R15_OFFSET | size: 3 | old_ip: 182 | new_ip: 464 | has imm_arg: 1 | imm_arg: 132 | ", style = "rounded, filled", fillcolor = red]
+node_136 -> node_137;
+node_138[label = " comand: x86_RET | size: 1 | old_ip: 187 | new_ip: 471 | has imm_arg: 0 | imm_arg: 0 | ", style = "rounded, filled", fillcolor = green]
+node_137 -> node_138;
+}

@@ -7,7 +7,7 @@ CFLAGS = -Wshadow -Winit-self -Wredundant-decls -Wcast-align -Wundef -Wfloat-equ
 SRC_DIR = ./src/
 OBJ_DIR = ./obj/
 
-SRCC = main.cpp Binary_Parser.cpp dump.cpp File_work.cpp
+SRCC = main.cpp Binary_Parser.cpp dump.cpp File_work.cpp Translation.cpp
 OBJ = $(patsubst %.cpp, $(OBJ_DIR)%.o, $(SRCC))
 
 all: just_do_it

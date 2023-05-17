@@ -26,6 +26,7 @@ Byte_Code_Nodes_List* Parsing_from_binary(Text* text)
                 Error_Occures(UNKNOWN_COMMAND, text->ip, *(text->buffer + text->ip));
                 break;
         }
+        node->ip = text->ip;
 
         Get_Args(node, text);
         
