@@ -127,4 +127,25 @@ Here you can see how commands are translated from my assebler to x86-64:
   In every argument we replace the absolute ip in the old byte code with a relative offset to the call address.
 </details>
 
-Firstly I translate given byte-code comands to structures, making so-called IR (Intermediate representation). It helps to translate byte code much easier, makes debugging more convenient and code more readable. 
+Firstly I translate given byte-code comands to structures, making so-called IR (Intermediate representation). It helps to translate byte code much easier, makes debugging more convenient and code more readable.
+
+
+## Performance analyzing
+
+Now we can compare the performance on hand-made processor and on real x86-64 architecture. In the time-test regime all outputs are shutted down and inputs are replaced for receiving a fixed number. Program is executed 10000000 times. You can change these parametres in "common_define.h"
+
+**Factorial**:
+- program counts 7!
+- My Processor execution time: 7.48 s
+- x86_64 execution time: 0.92 s
+- Speed up: 8.1 times
+
+**Quadratic equation solver**:
+- programm counts $x^2 + 4x + 3$
+- My Processor execution time: 6.38 s
+- x86_64 execution time: 0.91 s
+- Speed up: 7.0 times
+
+## Conclusion 
+
+During the implementation of these works I learned a lot about computer architecture, compilators and programming. In the nearest future, after the session end, I'm planning to improve my program, add some optimisations and implement more functions. I give all the thanks to Ded, aka Dedus, aka Ilya Dedinskiy, and to all my groupmates for this really interesting and productive year! Hope to continue our journey together!
