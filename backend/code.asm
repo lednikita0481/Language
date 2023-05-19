@@ -10,7 +10,7 @@ div
 
 pop [0]
 
-push 0
+push 7000
 push 1000
 div
 

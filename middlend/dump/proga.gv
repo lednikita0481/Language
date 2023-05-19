@@ -21,7 +21,7 @@ node_9[label = "{type: LANG WORD | name: Statement   | num: 9}", style = "rounde
 node_10[label = "{type: LANG WORD | name: var   | num: 10}", style = "rounded, filled", fillcolor = "pink"];
 node_11[label = "{type: VARIABLE | name: счетчик | num: 11}", style = "filled", fillcolor = "green"];
 node_10->node_11 [color = "darkgreen"]
-node_12[label = "{type: VALUE | double: 0 | num: 12}", style = "filled", fillcolor = "grey"];
+node_12[label = "{type: VALUE | double: 7 | num: 12}", style = "filled", fillcolor = "grey"];
 node_10->node_12 [color = "darkred"]
 node_9->node_10 [color = "darkgreen"]
 node_13[label = "{type: LANG WORD | name: Statement   | num: 13}", style = "rounded, filled", fillcolor = "yellow"];

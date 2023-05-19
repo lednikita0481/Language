@@ -1,9 +1,12 @@
 #ifndef INCLUDED_J_H
 #define INCLUDED_J_H
 
+//#define TIME_TEST
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
 #include <sys/mman.h>
 
 
@@ -73,7 +76,7 @@ enum x86_Commands : u_int64_t
 {
     // mov r_x, imm
     MOV_REG_IMM = 0xb848,                // "|" with shifted by 8 reg mask (till rdi)
-    MOV_R15_IMM = 0xba49,
+    MOV_R15_IMM = 0xbf49,
 
     MOV_REG_REG = 0xc08948,             // first reg - "|" with shifted by 19 mask
                                         // second reg - "|" with shifted by 16 mask

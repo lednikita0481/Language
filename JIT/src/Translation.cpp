@@ -26,8 +26,8 @@ x86_Nodes_List* Translate(Byte_Code_Nodes_List* byte_list)
     SET_IMM_ARG(0);
     NEXT_NODE();
 
-    SET_COMAND(POP_R13);
-    NEXT_NODE();
+    //SET_COMAND(POP_R13);
+    //NEXT_NODE();
 
     Byte_Code_Node* byte_node = byte_list->first_node;
     for (int i = 0; i < byte_list->nodes_amount; i++)
@@ -272,11 +272,11 @@ void CondJmp_Handler(Byte_Code_Node* byte_node, x86_Nodes_List* x86_list, label*
     SET_COMAND(CMP_RAX_RBX);
     NEXT_NODE();
 
-    SET_COMAND(PUSH_REG, | rax);
-    NEXT_NODE();
+    //SET_COMAND(PUSH_REG, | rax);
+    //NEXT_NODE();
 
-    SET_COMAND(PUSH_REG, | rbx);
-    NEXT_NODE();
+    //SET_COMAND(PUSH_REG, | rbx);
+    //NEXT_NODE();
 
     switch (byte_node->command_type)
     {
@@ -314,11 +314,8 @@ void CondJmp_Handler(Byte_Code_Node* byte_node, x86_Nodes_List* x86_list, label*
 
 void Ret_Handler(Byte_Code_Node* byte_node, x86_Nodes_List* x86_list, int* code_size)
 {
-    SET_COMAND(PUSH_R13);
-    SET_OLD_IP();
-    NEXT_NODE();
-
     SET_COMAND(x86_RET);
+    SET_OLD_IP();
     NEXT_NODE();
 }
 

@@ -5,8 +5,10 @@
 #include <sys/stat.h>
 #include <ctype.h>
 #include <math.h>
+#include <time.h> 
 //#include <windows.h>
 #include <unistd.h>
+#include "../../../../common_define.h"
 
 //#include "TXLib.h"
 #include "config.h"
@@ -28,7 +30,23 @@ int main(int argc, char* argv[])
 
     Get_Code(&cpu, inp_file_name);
 
-    Do_What_Said(&cpu);
+    #ifndef TIME_TEST
+        Do_What_Said(&cpu);
+    #endif
+
+    #ifdef TIME_TEST
+        clock_t begin = clock();
+        for (long i = 0; i < CALLS_AMOUNT; i++)
+        {
+            Do_What_Said(&cpu);
+            cpu.ip = 0;
+            //printf("stack size %d\n", cpu.stk.size);
+        }
+        clock_t end = clock();
+
+        double time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
+        printf("time spent on native processor is %lf\n", time_spent);
+    #endif
 
     return 0;
 }

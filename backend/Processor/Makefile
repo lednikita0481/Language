@@ -43,3 +43,7 @@ $(OBJ_DIR_CPU)%.o: $(SRC_DIR_CPU)%.cpp
 clear:
 				rm -f $(OBJ_DIR_ASM)*.o
 				rm -f $(OBJ_DIR_CPU)*.o
+
+run:
+				./assembler
+				./CPU

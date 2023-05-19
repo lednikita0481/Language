@@ -26,7 +26,7 @@ node_11[label = "type: VARIABLE | name: счетчик | num = 11", style = "fil
 node_10 -> node_11;
 node_12[label = "type: LANG WORD | name: =   | num = 12", style = "rounded, filled", fillcolor = "red"];
 node_11 -> node_12;
-node_13[label = "type: VALUE | double: 0 | num = 13", style = "filled", fillcolor = "grey"];
+node_13[label = "type: VALUE | double: 7 | num = 13", style = "filled", fillcolor = "grey"];
 node_12 -> node_13;
 node_14[label = "type: LANG WORD | name: ;   | num = 14", style = "rounded, filled", fillcolor = "yellow"];
 node_13 -> node_14;

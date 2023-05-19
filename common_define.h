@@ -1,0 +1,5 @@
+#define TIME_TEST
+
+#define COMMON_IN 7
+
+#define CALLS_AMOUNT 10000000

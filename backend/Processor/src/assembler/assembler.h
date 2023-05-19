@@ -14,7 +14,6 @@ enum Commands
             if (arg)                                            \
             {                                                   \
                 char* Line = text->lines[line];                 \
-                printf("Line in push pop is %s\n", Line);       \
                 int Com_Name = cmd_##name;                      \
                 Get_arg(Line, code, &pointer, Com_Name, line);  \
                 line++;                                         \
@@ -31,7 +30,6 @@ enum Commands
 #define DEF_JMP(c_name)                                         \
     else if (strcmp(command, #c_name) == 0)                    \
     {                                                           \
-        printf("Trying to add label\n");                        \
         char* Line = text->lines[line];                         \
         Reach_Space(&Line);                                     \
                                                                 \
@@ -39,7 +37,6 @@ enum Commands
                                                                 \
         if (sscanf(Line, "%s", name) == 1)                      \
         {                                                       \
-            printf("label has a name\n");                       \
                                                                 \
             int Com_Name = cmd_##c_name + (1 << imm_const);                        \
             *(code + pointer) = char(Com_Name);                 \

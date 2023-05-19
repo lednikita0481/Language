@@ -72,8 +72,8 @@ DEF_CMD(jb, 8, 0,
         int b = StackPop(&cpu->stk);
         if (b < a) cpu->ip = *((int*)(cpu->code + cpu->ip + sizeof(char)));
         else cpu->ip += sizeof(char) + sizeof(int);
-        StackPush(&cpu->stk, b);
-        StackPush(&cpu->stk, a);
+        //StackPush(&cpu->stk, b);
+        //StackPush(&cpu->stk, a);
     })
 
 DEF_CMD(jbe, 9, 0,
@@ -82,8 +82,8 @@ DEF_CMD(jbe, 9, 0,
         int b = StackPop(&cpu->stk);
         if (b <= a) cpu->ip = *((int*)(cpu->code + cpu->ip + sizeof(char)));
         else cpu->ip += sizeof(char) + sizeof(int);
-        StackPush(&cpu->stk, b);
-        StackPush(&cpu->stk, a);
+        //StackPush(&cpu->stk, b);
+        //StackPush(&cpu->stk, a);
     })
 
 DEF_CMD(ja, 10, 0,
@@ -92,8 +92,8 @@ DEF_CMD(ja, 10, 0,
         int b = StackPop(&cpu->stk);
         if (b > a) cpu->ip = *((int*)(cpu->code + cpu->ip + sizeof(char)));
         else cpu->ip += sizeof(char) + sizeof(int);
-        StackPush(&cpu->stk, b);
-        StackPush(&cpu->stk, a);
+        //StackPush(&cpu->stk, b);
+        //StackPush(&cpu->stk, a);
     })
 
 DEF_CMD(jae, 11, 0,
@@ -102,8 +102,8 @@ DEF_CMD(jae, 11, 0,
         int b = StackPop(&cpu->stk);
         if (b >= a) cpu->ip = *((int*)(cpu->code + cpu->ip + sizeof(char)));
         else cpu->ip += sizeof(char) + sizeof(int);
-        StackPush(&cpu->stk, b);
-        StackPush(&cpu->stk, a);
+        //StackPush(&cpu->stk, b);
+        //StackPush(&cpu->stk, a);
     })
 
 DEF_CMD(je, 12, 0,
@@ -112,8 +112,8 @@ DEF_CMD(je, 12, 0,
         int b = StackPop(&cpu->stk);
         if (b == a) cpu->ip = *((int*)(cpu->code + cpu->ip + sizeof(char)));
         else cpu->ip += sizeof(char) + sizeof(int);
-        StackPush(&cpu->stk, b);
-        StackPush(&cpu->stk, a);
+        //StackPush(&cpu->stk, b);
+        //StackPush(&cpu->stk, a);
     })
 
 DEF_CMD(jne, 13, 0,
@@ -122,8 +122,8 @@ DEF_CMD(jne, 13, 0,
         int b = StackPop(&cpu->stk);
         if (b != a) cpu->ip = *((int*)(cpu->code + cpu->ip + sizeof(char)));
         else cpu->ip += sizeof(char) + sizeof(int);
-        StackPush(&cpu->stk, b);
-        StackPush(&cpu->stk, a);
+        //StackPush(&cpu->stk, b);
+        //StackPush(&cpu->stk, a);
     })
 
 DEF_CMD(call, 14, 0,
@@ -140,8 +140,14 @@ DEF_CMD(ret, 15, 0,
 DEF_CMD(in, 16, 0,
     {
         int arg = 0;
+        #ifndef TIME_TEST
         printf("Enter a number: ");
         scanf("%d", &arg);
+        #endif
+
+        #ifdef TIME_TEST
+        arg = COMMON_IN;
+        #endif
         StackPush(&cpu->stk, arg * ACCURACY);
         cpu->ip += sizeof(char);
     })
@@ -149,7 +155,9 @@ DEF_CMD(in, 16, 0,
 DEF_CMD(out, 17, 0,
     {
         double a = StackPop(&cpu->stk);
+        #ifndef TIME_TEST
         printf("%lf\n", (a / ACCURACY));
+        #endif
         cpu->ip += sizeof(char);
     })
 

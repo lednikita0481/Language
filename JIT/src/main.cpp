@@ -3,6 +3,7 @@
 #include "include/Binary_Parser.h"
 #include "include/dump.h"
 #include "include/Translation.h"
+#include "../../common_define.h"
 
 static const int NATIVE_MEMORY_SIZE = 1000;
 static const int CODE_DATA_SPREAD = 500;
@@ -55,26 +56,34 @@ int main(int argc, char* argv[])
     Text text = {};
     Get_Text(&text, argc, argv);
     Byte_Code_Nodes_List* list = Parsing_from_binary(&text);
-    List_Dump(list);
+    //List_Dump(list);
     x86_Nodes_List* x86_list = Translate(list);
-    x86_List_Dump(x86_list);
+    //x86_List_Dump(x86_list);
     JIT_load(x86_list);
 }
 
 void In_Func(long* num)
 {
-    double i = 0;
-    printf("Enter the number: ");
-    scanf("%lf", &i);
-    i = i * ((double)ACCURACY);
-    long asd = (long) i;
-    *num = asd;
+    #ifndef TIME_TEST
+        double i = 0;
+        printf("Enter the number: ");
+        scanf("%lf", &i);
+        i = i * ((double)ACCURACY);
+        long asd = (long) i;
+        *num = asd;
+    #endif
+
+    #ifdef TIME_TEST
+        *num = (long) (COMMON_IN * ACCURACY);
+    #endif
 }
 
 void Out_Func(long int num)
 {
+    #ifndef TIME_TEST
     double i = ((double) num) / ((double) ACCURACY);
     printf("%lf\n", i);
+    #endif
 }
 
 void Set_Long_Number(x86_Nodes_List* x86_list, unsigned char* buffer, int* ip, u_int64_t number)
@@ -141,6 +150,21 @@ void JIT_load(x86_Nodes_List* x86_list)
     fclose(file);
 
     void (* run_code_god_save_me_i_have_no_idea_how_to_debug_it) (void) = (void (*) (void))(buffer);
-    run_code_god_save_me_i_have_no_idea_how_to_debug_it();
+
+    #ifdef TIME_TEST
+        clock_t begin = clock();
+        for (long i = 0; i < CALLS_AMOUNT; i++)
+        {
+            run_code_god_save_me_i_have_no_idea_how_to_debug_it();
+        }
+        clock_t end = clock();
+
+        double time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
+        printf("time spent on JIT processor is %lf\n", time_spent);
+    #endif
+
+    #ifndef TIME_TEST
+        run_code_god_save_me_i_have_no_idea_how_to_debug_it();
+    #endif
 
 }

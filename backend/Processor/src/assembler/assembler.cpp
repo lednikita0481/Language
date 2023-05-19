@@ -30,6 +30,10 @@ int main(int argc, char* argv[])
     Read_From_File(&text, inp_file_name);
     Lines_Connecter(&text);
     Get_Code(&text, labels, output_file_name);
+
+    char cpy_com[100] = {};
+    sprintf(cpy_com, "cp %s ../../JIT/programs", output_file_name);
+    system(cpy_com);
 }
 
 void Read_From_File(struct Commands_Info* text, char* inp_file_name)

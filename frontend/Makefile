@@ -23,3 +23,6 @@ $(OBJ_DIR)%.o: $(SRC_DIR)%.cpp
 
 clear:
 				rm -f $(OBJ_DIR)*.o
+
+run:
+				./language
