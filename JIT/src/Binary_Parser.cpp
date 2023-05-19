@@ -17,7 +17,7 @@ Byte_Code_Nodes_List* Parsing_from_binary(Text* text)
 
     while (text->ip < text->size)
     {
-        printf("now byte is %d, with mask: %d \n", *(text->buffer + text->ip), BYTE_CODE_MASK & *(text->buffer + text->ip));
+        //printf("now byte is %d, with mask: %d \n", *(text->buffer + text->ip), BYTE_CODE_MASK & *(text->buffer + text->ip));
         switch (BYTE_CODE_MASK & *(text->buffer + text->ip))
         {
             #include "include/cmd.h"
@@ -42,7 +42,7 @@ Byte_Code_Nodes_List* Parsing_from_binary(Text* text)
     node = nodes_list->first_node;
     for (int i = 0; i < nodes_list->nodes_amount; i++)
     {
-        printf("%d %d\n", i, node->command_type);
+        //printf("%d %d\n", i, node->command_type);
         node = node->next_node;
     }
 

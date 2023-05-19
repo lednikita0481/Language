@@ -8,6 +8,7 @@
     fflush(dump_file)
 
 
+char* Get_x86_Command_Name(x86_Commands command);
 char* Get_Command_Name(byte_code command_type);
 FILE* Open_Dump(const char* name);
 void List_Dump(Byte_Code_Nodes_List* list);

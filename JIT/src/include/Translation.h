@@ -26,6 +26,7 @@ void Update_Vars_And_Labels(x86_Nodes_List* x86_list, label* labels);
     x86_list->current_using->command = comand __VA_ARGS__;\
     x86_list->current_using->command_size = SIZE_##comand;\
     x86_list->current_using->old_ip = -1;\
+    x86_list->current_using->command_without_mask = comand;\
     *(code_size) += SIZE_##comand;
 
 #define SET_OLD_IP() x86_list->current_using->old_ip = byte_node->ip;
@@ -45,7 +46,8 @@ void Update_Vars_And_Labels(x86_Nodes_List* x86_list, label* labels);
 #define SET_IMM_ARG(arg)\
     x86_list->current_using->has_imm_arg = true;        \
     x86_list->current_using->imm_arg = arg;             \
-    *(code_size) += sizeof(int);
+    if ((x86_list->current_using->command & MOV_REG_IMM) == MOV_REG_IMM || x86_list->current_using->command == MOV_R15_IMM) *(code_size) += sizeof(long int);\
+    else *(code_size) += sizeof(int);
 
 
 #define NEXT_NODE()\

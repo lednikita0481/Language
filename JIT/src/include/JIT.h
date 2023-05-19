@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <sys/mman.h>
 
 
 #define DEF_CMD(name, num, arg, ...)\
@@ -71,7 +72,8 @@ enum Registers
 enum x86_Commands : u_int64_t
 {
     // mov r_x, imm
-    MOV_REG_IMM = 0xb848,                // "|" with shifted by 8 reg mask
+    MOV_REG_IMM = 0xb848,                // "|" with shifted by 8 reg mask (till rdi)
+    MOV_R15_IMM = 0xba49,
 
     MOV_REG_REG = 0xc08948,             // first reg - "|" with shifted by 19 mask
                                         // second reg - "|" with shifted by 16 mask
@@ -89,6 +91,9 @@ enum x86_Commands : u_int64_t
     PUSH_R15_OFFSET = 0xb7ff41,          // followed by int offset
 
     POP_REG = 0x58,                     // "|" with reg mask
+
+    POP_R13 = 0x5d41,
+    PUSH_R13 = 0x5541,
 
     // pop [r15 + offset]
     POP_R15_OFFSET = 0x878f41,          // followed by int offset
@@ -113,6 +118,8 @@ enum x86_Commands : u_int64_t
     MULPD_XMM0_XMM1 = 0xc1590f66,       // xmm0*xmm1 -> xmm0
 
     CVTSI2SD_XMM1_RAX = 0xc82a0f48f2,   // mov xmm1, rax
+
+    LEA_RDI_R15_OFFSET = 0xbf8d49,      // lea rdi, [r15 + offset]
 
     x86_RET = 0xc3,     
 
@@ -140,6 +147,7 @@ enum x86_Commands : u_int64_t
 enum x86_Commands_Size
 {
     SIZE_MOV_REG_IMM = 2,
+    SIZE_MOV_R15_IMM = 2,
     SIZE_MOV_REG_REG = 3,
     SIZE_MOV_REG_R15_OFFSET = 3,
     SIZE_MOV_R15_OFFSET_REG = 3,
@@ -157,6 +165,7 @@ enum x86_Commands_Size
     SIZE_DIVPD_XMM0_XMM1 = 4,
     SIZE_MULPD_XMM0_XMM1 = 4,
     SIZE_CVTSI2SD_XMM1_RAX = 5,
+    SIZE_LEA_RDI_R15_OFFSET = 3,
     SIZE_x86_RET = 1,
     SIZE_x86_JMP = 1,
     SIZE_x86_COND_JMP = 2,
@@ -170,7 +179,8 @@ enum x86_Commands_Size
     SIZE_MOV_RSP_RBP = 3,
     SIZE_AND_RSP_FF = 4,
     SIZE_MOV_XMM_RSP = 6,
-
+    SIZE_POP_R13 = 2,
+    SIZE_PUSH_R13 = 2,
 };
 
 enum COND_JMPS
@@ -186,6 +196,7 @@ enum COND_JMPS
 struct x86_Node
 {
     u_int64_t command;
+    x86_Commands command_without_mask;
     int command_size;
     int old_ip;
     int new_ip;
@@ -203,6 +214,7 @@ struct x86_Nodes_List
     x86_Node* first_node;
     int size;
     x86_Node* current_using;
+    int code_size;
 };
 
 enum ERRORS
@@ -214,9 +226,11 @@ enum ERRORS
     UNKNOWN_COMMAND,
     NO_JIT_COMMAND_YET,
     NO_LABEL_FOUND,
+    MPROTECT_ERROR,
 };
 
 
 void Error_Occures(ERRORS error, int ip = -1, char byte = 0);
+void JIT_load(x86_Nodes_List* x86_list);
 
 #endif

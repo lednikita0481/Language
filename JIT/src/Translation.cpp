@@ -1,4 +1,5 @@
 #include "include/Translation.h"
+#include "include/dump.h"
 
 const int NATIVE_MEMORY_SIZE = 1000;
 int variables[NATIVE_MEMORY_SIZE] = {};
@@ -8,7 +9,7 @@ const int ACCURACY = 1000;
 
 const int MAX_LABLES_AMOUNT = 100;
 
-const int CODE_DATA_SPREAD = 100;
+const int CODE_DATA_SPREAD = 500;
 
 x86_Nodes_List* Translate(Byte_Code_Nodes_List* byte_list)
 {
@@ -18,7 +19,15 @@ x86_Nodes_List* Translate(Byte_Code_Nodes_List* byte_list)
 
     label lables[MAX_LABLES_AMOUNT] = {};
 
-    int code_size = 0;
+    int code_size_int = 0;
+    int* code_size = &code_size_int;
+
+    SET_COMAND(MOV_R15_IMM);
+    SET_IMM_ARG(0);
+    NEXT_NODE();
+
+    SET_COMAND(POP_R13);
+    NEXT_NODE();
 
     Byte_Code_Node* byte_node = byte_list->first_node;
     for (int i = 0; i < byte_list->nodes_amount; i++)
@@ -26,27 +35,27 @@ x86_Nodes_List* Translate(Byte_Code_Nodes_List* byte_list)
         switch (byte_node->command_type)
         {
             case byte_code_push:
-                Push_Handler(byte_node, x86_list, &code_size);
+                Push_Handler(byte_node, x86_list, code_size);
                 break;
 
             case byte_code_pop:
-                Pop_Handler(byte_node, x86_list, &code_size);
+                Pop_Handler(byte_node, x86_list, code_size);
                 break;
 
             case byte_code_add:
             case byte_code_sub:
             case byte_code_mul:
             case byte_code_div:
-                Add_Sub_Imul_Idiv_Handler(byte_node, x86_list, &code_size);
+                Add_Sub_Imul_Idiv_Handler(byte_node, x86_list, code_size);
                 break;
             
             case byte_code_sqrt:
-                sqrt_Handler(byte_node, x86_list, &code_size);
+                sqrt_Handler(byte_node, x86_list, code_size);
                 break;
 
             case byte_code_jmp:
             case byte_code_call:
-                Jmp_Call_Handler(byte_node, x86_list, lables, &code_size);
+                Jmp_Call_Handler(byte_node, x86_list, lables, code_size);
                 break;
 
             case byte_code_ja:
@@ -55,20 +64,20 @@ x86_Nodes_List* Translate(Byte_Code_Nodes_List* byte_list)
             case byte_code_jbe:
             case byte_code_je:
             case byte_code_jne:
-                CondJmp_Handler(byte_node, x86_list, lables, &code_size);
+                CondJmp_Handler(byte_node, x86_list, lables, code_size);
                 break;
 
             case byte_code_hlt:
             case byte_code_ret:
-                Ret_Handler(byte_node, x86_list, &code_size);
+                Ret_Handler(byte_node, x86_list, code_size);
                 break;
 
             case byte_code_in:
-                In_Handler(byte_node, x86_list, &code_size);
+                In_Handler(byte_node, x86_list, code_size);
                 break;
 
             case byte_code_out:
-                Out_Handler(byte_node, x86_list, &code_size);
+                Out_Handler(byte_node, x86_list, code_size);
                 break;
             
             default:
@@ -79,6 +88,10 @@ x86_Nodes_List* Translate(Byte_Code_Nodes_List* byte_list)
         byte_node = byte_node->next_node;
     }
 
+    SET_COMAND(PUSH_R13);
+    NEXT_NODE();
+
+    x86_list->code_size = *code_size;
     Update_Vars_And_Labels(x86_list, lables);
     return x86_list;
 }
@@ -92,14 +105,18 @@ void Push_Handler(Byte_Code_Node* byte_node, x86_Nodes_List* x86_list, int* code
     {
         SET_COMAND(PUSH_R15_OFFSET);
         SET_IMM_ARG_MEM();                      // после полной трансляции обновить адреса на + code size
+        SET_OLD_IP();
     }
 
     else
     {
-        SET_COMAND(PUSH_REG, | (byte_node->reg_arg.arg));
+        SET_COMAND(MOV_REG_IMM, | (rax << 8));
+        SET_IMM_ARG(byte_node->imm_arg.arg);
+        SET_OLD_IP();
+        NEXT_NODE();
+        SET_COMAND(PUSH_REG, | rax);
     }
 
-    SET_OLD_IP();
     NEXT_NODE();
 }
 
@@ -129,11 +146,11 @@ void Add_Sub_Imul_Idiv_Handler(Byte_Code_Node* byte_node, x86_Nodes_List* x86_li
     SET_COMAND(POP_REG, | rax);
     NEXT_NODE();
 
-    if (byte_node->command_type == byte_code_add) {SET_COMAND(ADD_REG_REG, | (rax << 19) | (rbx << 16));}
-    else if (byte_node->command_type == byte_code_sub) {SET_COMAND(SUB_REG_REG, | (rax << 19) | (rbx << 16));}
+    if (byte_node->command_type == byte_code_add) {SET_COMAND(ADD_REG_REG, | (rax << 16) | (rbx << 19));}
+    else if (byte_node->command_type == byte_code_sub) {SET_COMAND(SUB_REG_REG, | (rax << 16) | (rbx << 19));}
     else if (byte_node->command_type == byte_code_mul)
     {
-        SET_COMAND(IMUL_REG_REG, | (rax << 27) | (rbx << 24));
+        SET_COMAND(IMUL_REG_REG, | (rbx << 24) | (rax << 27));
         NEXT_NODE();
 
         SET_COMAND(MOV_REG_IMM, | (rdi << 8));
@@ -166,7 +183,7 @@ void Add_Sub_Imul_Idiv_Handler(Byte_Code_Node* byte_node, x86_Nodes_List* x86_li
         SET_COMAND(CQO);
         NEXT_NODE();
 
-        SET_COMAND(IDIV_REG, | (rdi << 16));
+        SET_COMAND(IDIV_REG, | (rbx << 16));
         NEXT_NODE();
 
         SET_COMAND(MOV_REG_IMM, | (rdx << 8));
@@ -238,8 +255,8 @@ void Jmp_Call_Handler(Byte_Code_Node* byte_node, x86_Nodes_List* x86_list, label
     }
 
     SET_OLD_IP();
-    SET_IMM_ARG(byte_node->ip);
-    Add_Label(labels, byte_node->ip);
+    SET_IMM_ARG(byte_node->imm_arg.arg);
+    Add_Label(labels, byte_node->imm_arg.arg);
     NEXT_NODE();    
 }
 
@@ -264,51 +281,54 @@ void CondJmp_Handler(Byte_Code_Node* byte_node, x86_Nodes_List* x86_list, label*
     switch (byte_node->command_type)
     {
         case byte_code_jb:
-            SET_COMAND(x86_COND_JMP, | JL_MASK);
+            SET_COMAND(x86_COND_JMP, | (JL_MASK << 8));
             break;
         
         case byte_code_jbe:
-            SET_COMAND(x86_COND_JMP, | JLE_MASK);
+            SET_COMAND(x86_COND_JMP, | (JLE_MASK << 8));
             break;
 
         case byte_code_ja:
-            SET_COMAND(x86_COND_JMP, | JG_MASK);
+            SET_COMAND(x86_COND_JMP, | (JG_MASK << 8));
             break;
 
         case byte_code_jae:
-            SET_COMAND(x86_COND_JMP, | JGE_MASK);
+            SET_COMAND(x86_COND_JMP, | (JGE_MASK<< 8));
             break;
         
         case byte_code_je:
-            SET_COMAND(x86_COND_JMP, | JE_MASK);
+            SET_COMAND(x86_COND_JMP, | (JE_MASK << 8));
             break;
 
         case byte_code_jne:
-            SET_COMAND(x86_COND_JMP, | JNE_MASK);
+            SET_COMAND(x86_COND_JMP, | (JNE_MASK << 8));
             break;
         
         default:
             break;
     }
-    SET_IMM_ARG(byte_node->ip);
+    SET_IMM_ARG(byte_node->imm_arg.arg);
     NEXT_NODE();
-    Add_Label(labels, byte_node->ip);
+    Add_Label(labels, byte_node->imm_arg.arg);
 }
 
 void Ret_Handler(Byte_Code_Node* byte_node, x86_Nodes_List* x86_list, int* code_size)
 {
-    SET_COMAND(x86_RET);
+    SET_COMAND(PUSH_R13);
     SET_OLD_IP();
+    NEXT_NODE();
+
+    SET_COMAND(x86_RET);
     NEXT_NODE();
 }
 
 void In_Handler(Byte_Code_Node* byte_node, x86_Nodes_List* x86_list, int* code_size)
 {
-    SET_COMAND(PUSH_REG, | rax);
-    SET_OLD_IP();
-    NEXT_NODE();
 
-    SET_COMAND(LEA_RDI_RSP);
+    SET_COMAND(LEA_RDI_R15_OFFSET);
+    SET_IMM_ARG(0);
+    SET_OLD_IP();
+    x86_list->current_using->is_in_call = true;
     NEXT_NODE();
 
     SET_COMAND(PUSH_ALL);
@@ -322,6 +342,7 @@ void In_Handler(Byte_Code_Node* byte_node, x86_Nodes_List* x86_list, int* code_s
 
     SET_COMAND(x86_CALL);
     x86_list->current_using->is_in_call = true;
+    SET_IMM_ARG(0);
     NEXT_NODE();
 
     SET_COMAND(MOV_RSP_RBP);
@@ -329,11 +350,16 @@ void In_Handler(Byte_Code_Node* byte_node, x86_Nodes_List* x86_list, int* code_s
 
     SET_COMAND(POP_ALL);
     NEXT_NODE();
+
+    SET_COMAND(PUSH_R15_OFFSET);
+    x86_list->current_using->is_in_call = true;
+    SET_IMM_ARG(0);
+    NEXT_NODE();
 }
 
 void Out_Handler(Byte_Code_Node* byte_node, x86_Nodes_List* x86_list, int* code_size)
 {
-    SET_COMAND(MOV_XMM_RSP);
+    SET_COMAND(POP_REG, | rdi);
     SET_OLD_IP();
     NEXT_NODE();
 
@@ -348,15 +374,13 @@ void Out_Handler(Byte_Code_Node* byte_node, x86_Nodes_List* x86_list, int* code_
 
     SET_COMAND(x86_CALL);
     x86_list->current_using->is_out_call = true;
+    SET_IMM_ARG(0);
     NEXT_NODE();
 
     SET_COMAND(MOV_RSP_RBP);
     NEXT_NODE();
 
     SET_COMAND(POP_ALL);
-    NEXT_NODE();
-
-    SET_COMAND(POP_REG, | rdi);
     NEXT_NODE();
 }
 
@@ -379,6 +403,7 @@ int Get_Label_NewIp(label* labels, int old_ip)
         if (labels[i].old_ip == old_ip) return labels[i].new_ip;
     }
 
+    //printf("Holly shit wtf is here I don't know but old ip is %d\n", old_ip);
     Error_Occures(NO_LABEL_FOUND);
 }
 
@@ -390,27 +415,47 @@ void Update_Vars_And_Labels(x86_Nodes_List* x86_list, label* labels)
     {
         if (x86_list->current_using->old_ip != -1) Update_Label(labels, x86_list->current_using->old_ip, cur_code_size);
 
-        if (x86_list->current_using->command == PUSH_R15_OFFSET || x86_list->current_using->command == POP_R15_OFFSET)
-            x86_list->current_using->imm_arg += CODE_DATA_SPREAD;
+        if (x86_list->current_using->command_without_mask == PUSH_R15_OFFSET || x86_list->current_using->command == POP_R15_OFFSET)
+            x86_list->current_using->imm_arg += CODE_DATA_SPREAD + x86_list->code_size;
+        
+        if ((x86_list->current_using->command_without_mask == PUSH_R15_OFFSET || x86_list->current_using->command_without_mask == LEA_RDI_R15_OFFSET)
+            && x86_list->current_using->is_in_call)
+        {
+            x86_list->current_using->imm_arg = x86_list->code_size + CODE_DATA_SPREAD - 16;
+        }
 
         x86_list->current_using->new_ip = cur_code_size;
 
         cur_code_size += x86_list->current_using->command_size;
 
-        if (x86_list->current_using->has_imm_arg) cur_code_size += sizeof(int);
+        if (x86_list->current_using->has_imm_arg) 
+        {
+            if ((x86_list->current_using->command & MOV_REG_IMM) == MOV_REG_IMM || x86_list->current_using->command == MOV_R15_IMM)
+                cur_code_size += sizeof(long int);
+            else cur_code_size += sizeof(int);
+        }
 
         x86_list->current_using = x86_list->current_using->next_node;
     }
+
+    x86_list->code_size = cur_code_size;
+
+    //x86_List_Dump(x86_list);
 
     x86_list->current_using = x86_list->first_node;
 
     for (int i = 0; i < x86_list->size; i++)
     {
-        if (x86_list->current_using->command == x86_CALL
-            || x86_list->current_using->command == x86_JMP
-            || (x86_list->current_using->command & x86_COND_JMP) == x86_COND_JMP)
+        if ((x86_list->current_using->command_without_mask == x86_CALL
+            || x86_list->current_using->command_without_mask == x86_JMP
+            || x86_list->current_using->command_without_mask == x86_COND_JMP)
+            && (!x86_list->current_using->is_in_call) && (!x86_list->current_using->is_out_call))
         {
-            x86_list->current_using->imm_arg = Get_Label_NewIp(labels, x86_list->current_using->old_ip) - x86_list->current_using->new_ip;
+            //printf("trying to find label for a node with new ip = %d and command %s\n", x86_list->current_using->new_ip, Get_x86_Command_Name(x86_list->current_using->command_without_mask));
+            //printf("\n%d %d\n\n\n", Get_Label_NewIp(labels, x86_list->current_using->imm_arg), x86_list->current_using->new_ip);
+            x86_list->current_using->imm_arg = Get_Label_NewIp(labels, x86_list->current_using->imm_arg) - (x86_list->current_using->new_ip + x86_list->current_using->command_size + sizeof(int));
         }
+
+        x86_list->current_using = x86_list->current_using->next_node;
     }
 }   
