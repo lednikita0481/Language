@@ -141,7 +141,7 @@ Now we can compare the performance on hand-made processor and on real x86-64 arc
 - Speed up: 8.1 times
 
 **Quadratic equation solver**:
-- programm counts $x^2 + 4x + 3$
+- programm counts $x^2 + 4x + 3 = 0$
 - My Processor execution time: 6.38 s
 - x86_64 execution time: 0.91 s
 - Speed up: 7.0 times
