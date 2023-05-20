@@ -10,7 +10,7 @@ Some tasks later Language was implemented. It's possible to write something in i
 Then assembler translates the code to byte-code for our processor and it can be executed. Language consists of two subtasks. Firstly in 
 [frontend](https://github.com/lednikita0481/Language/tree/main/frontend) the program is parsing my language code into the nodes tree 
 and writes it to the file according to the [tree standard](https://github.com/dodokek/LanguageStandart/blob/main/README.md). After that 
-[middlend part](https://github.com/lednikita0481/Language/tree/main/middlend) translates into to the assembly. Such division made our languages
+[middlend part](https://github.com/lednikita0481/Language/tree/main/middlend) translates it into the assembly. Such division made our languages
 "multi-platform": you can give your tree-standart file to another student, and your code will be executable on his realization of the processor and vice versa.
 
 The final task is a [binary translator](https://github.com/lednikita0481/Language/tree/main/JIT). It helps to make the code, written in my programming language, executable on a real machine. 
