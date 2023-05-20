@@ -3,7 +3,7 @@
 ## Background
 
 This repository consists of several works I've done during the 1st grade programming cource of [Ilya Dedinsky](https://github.com/ded32)
-in MIPT DREC. The first one, [Processor](https://github.com/lednikita0481/Language/tree/main/backend/Processor) was implemented to understand 
+in MIPT DREC. The first one, [Processor](https://github.com/lednikita0481/Language/tree/main/backend/Processor), was implemented to understand 
 the main principles of computer's work with help of simulation of the translation from assembler to byte code and its execution.
 
 Some tasks later Language was implemented. It's possible to write something in it and after that it will be translated to our hand-made assembler. 
